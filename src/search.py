@@ -81,7 +81,7 @@ def createIndex(name):
     indices = elasticsearch.client.IndicesClient(es)
 
     print indices.create(name)
-    with open("./course.json", "r") as mapping:
+    with open("../course.json", "r") as mapping:
         print indices.put_mapping("course", loads(mapping.read()), name)
 
 def indexListing(course):
@@ -230,8 +230,9 @@ searchers = {
     }
 
 #print searchTerms({"title" : "PHILOS"})
-
+#createIndex("oersearch")
 #for c in imap(classToJSON, allCourses()):
     #try:
         #print indexListing(c)
     #except UnIndexable as e:
+        ##print e
