@@ -9,7 +9,7 @@ function makeResourceGetter(self) {
             "title" : this.booktitle,
             "author" : this.bookauthor
         };
-        var url = "http://"+root+"/resources";
+        var url = "https://"+root+"/resources";
         console.log(params);
         $.getJSON(url, {
             data : JSON.stringify(params)
