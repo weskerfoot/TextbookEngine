@@ -7,5 +7,5 @@ refine it to find better matches.
 
 The code is available under the GNU Affero General Public License.
 This means you must make any changes you make available if you run it on your
-own server. See [here](https://www.gnu.org/licenses/why-affero-gpl.html) for
-more info.
+own server, in addition to the regular requirements of the GPL.
+See [here](https://www.gnu.org/licenses/why-affero-gpl.html) for more info.
