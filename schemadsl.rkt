@@ -1,6 +1,5 @@
 #lang racket
-; This file is used to generate the elasticsearch mapping
-; It is written in Racket (a dialect of Scheme)
+
 (require json)
 
 (define (root name type)
