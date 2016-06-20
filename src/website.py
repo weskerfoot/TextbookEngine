@@ -1,6 +1,5 @@
 #! /usr/bin/python2
 from functools import partial
-from couchdb import ResourceConflict
 
 from flask import Flask, render_template, flash, request, send_from_directory
 from flask_bootstrap import Bootstrap
@@ -61,8 +60,8 @@ def ClassSearch(configfile=None):
                                 # https://github.com/mbr/flask-appconfig
     Bootstrap(app)
 
-    app.config["scripts"] = "/home/wes/MGOAL/scripts"
-    app.config["styles"] = "/home/wes/MGOAL/styles"
+    app.config["scripts"] = "./scripts"
+    app.config["styles"] = "./styles"
 
     @app.route('/favicon.ico')
     def favicon():
@@ -145,4 +144,4 @@ def ClassSearch(configfile=None):
     return app
 
 if __name__ == "__main__":
-    ClassSearch().run(port=8001, debug=True)
+    ClassSearch("./appconfig").run(port=8001, debug=True)
