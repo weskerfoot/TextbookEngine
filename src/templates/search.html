@@ -28,19 +28,19 @@
 
 {% block styles %}
 {{super()}}
-<link rel="stylesheet" href="/search/{{ url_for('send_style', filename='spectre.min.css') }}">
-<link rel="stylesheet" href="/search/{{ url_for('send_style', filename='search.css') }}">
+<link rel="stylesheet" href="/search{{ url_for('send_style', filename='spectre.min.css') }}">
+<link rel="stylesheet" href="/search{{ url_for('send_style', filename='search.css') }}">
 {% endblock %}
 {{ url_for('send_script', filename='') }}
 {% block scripts %}
  {{super()}}
  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.4.1/riot+compiler.min.js"></script>
  <script type="text/javascript" src="{{ url_for('send_script', filename='jquery-ui-1.11.4.custom/jquery-ui.min.js') }}"></script>
- <script type="riot/tag" src="/search/{{ url_for('send_script', filename='search.tag') }}"></script>
- <script type="riot/tag" src="/search/{{ url_for('send_script', filename='book.tag') }}"></script>
- <script type="riot/tag" src="/search/{{ url_for('send_script', filename='class.tag') }}"></script>
- <script type="riot/tag" src="/search/{{ url_for('send_script', filename='row.tag') }}"></script>
- <script type="riot/tag" src="/search/{{ url_for('send_script', filename='results.tag') }}"></script>
+ <script type="riot/tag" src="/search{{ url_for('send_script', filename='search.tag') }}"></script>
+ <script type="riot/tag" src="/search{{ url_for('send_script', filename='book.tag') }}"></script>
+ <script type="riot/tag" src="/search{{ url_for('send_script', filename='class.tag') }}"></script>
+ <script type="riot/tag" src="/search{{ url_for('send_script', filename='row.tag') }}"></script>
+ <script type="riot/tag" src="/search{{ url_for('send_script', filename='results.tag') }}"></script>
  <script type="text/javascript" src="{{ url_for('send_script', filename='search.js') }}"></script>
 {% endblock %}
   </body>
