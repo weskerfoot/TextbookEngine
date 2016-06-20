@@ -1,0 +1,113 @@
+header {
+  color: #1c75bc;
+}
+
+.body {
+  color: #1c75bc;
+}
+
+a {
+  color: #1c75bc !important;
+}
+
+.btn-primary {
+  background-color: #1c75bc !important;
+}
+
+.courses {
+  margin-top: 100px;
+  max-width: 85%;
+}
+
+.course {
+  margin-left: 5px !important;
+  margin-right: 5px !important;
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+.search-form {
+  margin-top: 5%;
+  -webkit-appearance: none !important;
+}
+
+.book-title {
+  margin-right: 10px !important;
+}
+
+.form-item {
+  margin-left: 15px;
+  margin-right 15px;
+}
+
+#title {
+  font-weight: bolder;
+}
+
+.ui-autocomplete {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    display: none;
+    min-width: 160px;   
+    padding: 4px 0;
+    margin: 0 0 10px 25px;
+    list-style: none;
+    background-color: #ffffff;
+    border-color: #ccc;
+    border-color: rgba(0, 0, 0, 0.2);
+    border-style: solid;
+    border-width: 1px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+}
+
+.ui-menu-item > a.ui-corner-all {
+    display: block;
+    padding: 3px 15px;
+    clear: both;
+    font-weight: normal;
+    line-height: 18px;
+    color: #555555;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.ui-state-hover, .ui-state-active {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #0088cc;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    background-image: none;
+}
+
+.logo-div {
+  height:67px;
+  width:150px;
+  margin-right:1%;
+  margin-bottom: 0%;
+  margin-top:1%;
+  margin-left:2%;
+  background-size: 100%;
+  background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+  background-size: cover;
+  background-position: center center;
+  /*background-image: url('https://mgoal.ca/goal_transp.png');*/
+}
+
+.title-div {
+  margin-right:1%;
+  margin-bottom: -3%;
+  margin-top:1%;
+  margin-left:30%;
+  font-size: 25px;
+}
