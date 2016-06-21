@@ -1,14 +1,18 @@
 #! /usr/bin/python2
+from search import indexListing
+from textbookExceptions import UnIndexable
+from mcmaster.classes import allCourses, classToJSON, indexListing
+from itertools import imap
 
-# predictive data
-# switch to elasticsearch's prediction
+try:
+    print "Trying to create the index if it does not exist already"
+    createIndex("oersearch")
+except Exception as e:
+    print e
 
-
-
-import database
-import predictions
-
-class GOASearch(object):
-    def __init__(self):
-        return self
-
+print "Downloading course info"
+for c in imap(classToJSON, allCourses()):
+    try:
+        print indexListing(c)
+    except UnIndexable as e:
+        print e
