@@ -1,5 +1,3 @@
-var root = "mgoal.ca/search";
-
 function makeResourceGetter(self) {
     function getResources(ev) {
         ev.preventDefault();
@@ -9,7 +7,7 @@ function makeResourceGetter(self) {
             "title" : this.booktitle,
             "author" : this.bookauthor
         };
-        var url = "https://"+root+"/resources";
+        var url = "/resources";
         console.log(params);
         $.getJSON(url, {
             data : JSON.stringify(params)

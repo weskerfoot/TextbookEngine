@@ -12,8 +12,6 @@ from hashlib import sha1
 
 from textbookExceptions import UnIndexable
 
-from mcmaster.classes import allCourses
-
 # Generic instance of elasticsearch right now
 es = elasticsearch.Elasticsearch()
 
@@ -228,11 +226,3 @@ searchers = {
     "prof"  : search("prof"),
     "day"   : search("day"),
     }
-
-#print searchTerms({"title" : "PHILOS"})
-#createIndex("oersearch")
-#for c in imap(classToJSON, allCourses()):
-    #try:
-        #print indexListing(c)
-    #except UnIndexable as e:
-        ##print e

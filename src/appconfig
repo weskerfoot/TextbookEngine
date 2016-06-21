@@ -1,0 +1,2 @@
+SERVER_NAME="localhost:8001"
+APPLICATION_ROOT="/"

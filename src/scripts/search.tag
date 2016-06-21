@@ -21,7 +21,7 @@
 function submit(ev) {
     console.log("submitted");
     var params = $(ev.currentTarget).serialize();
-    $.getJSON("https://"+root+"/fc?"+params,
+    $.getJSON("/fc?"+params,
         function(courses) {
             var fcourses = filterCourses(courses);
             var cgroups = groupsof(4, fcourses);
