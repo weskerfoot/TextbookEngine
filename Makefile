@@ -9,6 +9,8 @@ default:
 	cp -r ./src/templates/search.html ./build/templates/;
 	cp -r ./src/{archive.py,openlibrary.py,predictions.py,search.py,website.py,textbookExceptions.py} ./build/;
 	cp ./src/appconfig ./build/;
+	sed -i s,NAME_HERE,"$(SRV_NAME)",g ./build/appconfig;
+	sed -i s,ROOT_HERE,"$(SRV_ROOT)",g ./build/appconfig;
 
 clean:
 	rm -r ./build;
