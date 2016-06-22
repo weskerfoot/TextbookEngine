@@ -1,9 +1,10 @@
 #! /usr/bin/python2
 from functools import partial
 
-from flask import Flask, render_template, flash, request, send_from_directory
+from flask import Blueprint, abort, Flask, render_template, flash, request, send_from_directory
 from flask_bootstrap import Bootstrap
 from flask_appconfig import AppConfig
+
 from urllib import unquote
 from search import searchTerms
 
@@ -54,7 +55,9 @@ def cacheit(key, thunk):
 
 def ClassSearch(configfile=None):
     defaults = {"Day", "Building", "Exact Location", "Department"}
+    blueprint = Blueprint("website", __name__, template_folder="templates")
     app = Flask(__name__)
+    app.register_blueprint(blueprint, url_prefix="/search")
     AppConfig(app, configfile)  # Flask-Appconfig is not necessary, but
                                 # highly recommend =)
                                 # https://github.com/mbr/flask-appconfig
