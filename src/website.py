@@ -138,7 +138,7 @@ def ClassSearch(configfile=None):
         return send_from_directory(app.config["styles"], filename)
 
     app = Flask(__name__)
-    app.register_blueprint(blueprint, prefix="/search")
+    app.register_blueprint(blueprint, url_prefix="/search")
     Bootstrap(app)
     app.config["scripts"] = "./scripts"
     app.config["styles"] = "./styles"
