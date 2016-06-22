@@ -66,37 +66,37 @@ def ClassSearch(configfile=None):
     app.config["scripts"] = "./scripts"
     app.config["styles"] = "./styles"
 
-    @app.route('/favicon.ico')
+    @blueprint.route('/favicon.ico')
     def favicon():
         return send_from_directory("/srv/http/goal/favicon.ico",
                                    'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
-    @app.route("/buildpred", methods=("GET", "POST"))
+    @blueprint.route("/buildpred", methods=("GET", "POST"))
     def buildpred():
         return predictbuild(request)
 
-    @app.route("/locpred", methods=("GET", "POST"))
+    @blueprint.route("/locpred", methods=("GET", "POST"))
     def locpred():
         return predictloc(request)
 
-    @app.route("/daypred", methods=("GET", "POST"))
+    @blueprint.route("/daypred", methods=("GET", "POST"))
     def daypred():
         return predictday(request)
 
-    @app.route("/deptpred", methods=("GET", "POST"))
+    @blueprint.route("/deptpred", methods=("GET", "POST"))
     def deptpred():
         return predictdept(request)
 
-    @app.route("/titlepred", methods=("GET", "POST"))
+    @blueprint.route("/titlepred", methods=("GET", "POST"))
     def titlepred():
         return predicttitle(request)
 
-    @app.route("/", methods=("GET", "POST"))
+    @blueprint.route("/", methods=("GET", "POST"))
     def index():
         return render_template("search.html")
 
-    @app.route("/fc", methods=("GET", "POST"))
+    @blueprint.route("/fc", methods=("GET", "POST"))
     def fc():
         """ Filter Courses """
         print "trying to get courses"
@@ -107,7 +107,7 @@ def ClassSearch(configfile=None):
         results = searchTerms(params)
         return results
 
-    @app.route("/resources", methods=("GET", "POST"))
+    @blueprint.route("/resources", methods=("GET", "POST"))
     def resources():
         """ Get Resources """
         notRequired = False
@@ -137,11 +137,11 @@ def ClassSearch(configfile=None):
                        "openlib" : openlib
                      })
 
-    @app.route("/scripts/<filename>")
+    @blueprint.route("/scripts/<filename>")
     def send_script(filename):
         return send_from_directory(app.config["scripts"], filename)
 
-    @app.route("/styles/<filename>")
+    @blueprint.route("/styles/<filename>")
     def send_style(filename):
         return send_from_directory(app.config["styles"], filename)
     return app
