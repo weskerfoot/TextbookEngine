@@ -123,7 +123,7 @@ def ClassSearch(configfile=None):
         if not (any(openlib) or any(iarchive)):
             # We literally could not find ANYTHING
             return dumps("false")
-            
+
         return dumps({
                        "iarchive" : iarchive,
                        "openlib" : openlib
@@ -138,7 +138,7 @@ def ClassSearch(configfile=None):
         return send_from_directory(app.config["styles"], filename)
 
     app = Flask(__name__)
-    app.register_blueprint(blueprint)
+    app.register_blueprint(blueprint, prefix="/search")
     Bootstrap(app)
     app.config["scripts"] = "./scripts"
     app.config["styles"] = "./styles"
