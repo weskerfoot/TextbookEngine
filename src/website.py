@@ -55,16 +55,7 @@ def cacheit(key, thunk):
 
 def ClassSearch(configfile=None):
     defaults = {"Day", "Building", "Exact Location", "Department"}
-    blueprint = Blueprint("website", __name__, template_folder="templates")
-    app = Flask(__name__)
-    app.register_blueprint(blueprint, url_prefix="/search")
-    AppConfig(app, configfile)  # Flask-Appconfig is not necessary, but
-                                # highly recommend =)
-                                # https://github.com/mbr/flask-appconfig
-    Bootstrap(app)
-
-    app.config["scripts"] = "./scripts"
-    app.config["styles"] = "./styles"
+    blueprint = Blueprint("TextBookSearch", __name__, template_folder="templates")
 
     @blueprint.route('/favicon.ico')
     def favicon():
@@ -94,6 +85,7 @@ def ClassSearch(configfile=None):
 
     @blueprint.route("/", methods=("GET", "POST"))
     def index():
+        print "never reached?"
         return render_template("search.html")
 
     @blueprint.route("/fc", methods=("GET", "POST"))
@@ -144,7 +136,13 @@ def ClassSearch(configfile=None):
     @blueprint.route("/styles/<filename>")
     def send_style(filename):
         return send_from_directory(app.config["styles"], filename)
+
+    app = Flask(__name__)
+    app.register_blueprint(blueprint)
+    Bootstrap(app)
+    app.config["scripts"] = "./scripts"
+    app.config["styles"] = "./styles"
     return app
 
 if __name__ == "__main__":
-    ClassSearch("./appconfig").run(port=8001, debug=True)
+    ClassSearch("./appconfig").run(host="localhost", port=8001, debug=True)
