@@ -20,3 +20,5 @@ install:
 	$(MAKE);
 	rm -rf /srv/http/build/;
 	cp -rT ./build /srv/http/build/;
+	cp -rT ./build/scripts/ /srv/http/mgoal/scripts/;
+	cp -rT ./build/styles/ /srv/http/mgoal/styles/;

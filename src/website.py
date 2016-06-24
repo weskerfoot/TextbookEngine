@@ -128,19 +128,19 @@ def ClassSearch(configfile=None):
                        "openlib" : openlib
                      })
 
-    @blueprint.route("/scripts/<filename>")
-    def send_script(filename):
-        return send_from_directory(app.config["scripts"], filename)
+    #@blueprint.route("/scripts/<filename>")
+    #def send_script(filename):
+        #return send_from_directory(app.config["scripts"], filename)
 
-    @blueprint.route("/styles/<filename>")
-    def send_style(filename):
-        return send_from_directory(app.config["styles"], filename)
+    #@blueprint.route("/styles/<filename>")
+    #def send_style(filename):
+        #return send_from_directory(app.config["styles"], filename)
 
     app = Flask(__name__)
     app.register_blueprint(blueprint, url_prefix="/search")
     Bootstrap(app)
-    app.config["scripts"] = "./scripts"
-    app.config["styles"] = "./styles"
+    #app.config["scripts"] = "./scripts"
+    #app.config["styles"] = "./styles"
     return app
 
 app = ClassSearch("./appconfig")
