@@ -13,8 +13,10 @@ default:
 	sed -i s,ROOT_HERE,"$(SRV_ROOT)",g ./build/appconfig;
 
 clean:
-	rm -r ./build;
+	rm -fr ./build;
 
 install:
+	$(MAKE) clean;
 	$(MAKE);
-	cp -r ./build /srv/http/build;
+	rm -rf /srv/http/build/;
+	cp -rT ./build /srv/http/build/;
