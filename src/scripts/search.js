@@ -7,7 +7,7 @@ function makeResourceGetter(self) {
             "title" : this.booktitle,
             "author" : this.bookauthor
         };
-        var url = "/resources";
+        var url = "/search/resources";
         console.log(params);
         $.getJSON(url, {
             data : JSON.stringify(params)

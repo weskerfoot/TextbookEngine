@@ -85,7 +85,6 @@ def ClassSearch(configfile=None):
 
     @blueprint.route("/", methods=("GET", "POST"))
     def index():
-        print "never reached?"
         return render_template("search.html")
 
     @blueprint.route("/fc", methods=("GET", "POST"))
@@ -144,5 +143,7 @@ def ClassSearch(configfile=None):
     app.config["styles"] = "./styles"
     return app
 
-if __name__ == "__main__":
-    ClassSearch("./appconfig").run(host="localhost", port=8001, debug=True)
+app = ClassSearch("./appconfig")
+
+#if __name__ == "__main__":
+    #ClassSearch("./appconfig").run(host="localhost", port=8001, debug=True)
