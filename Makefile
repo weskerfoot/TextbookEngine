@@ -20,6 +20,6 @@ install:
 	$(MAKE);
 	rm -rf /srv/http/build/;
 	cp -rT ./build /srv/http/build/;
-	cp -rT ./build/scripts/ $(SRV_ROOT)/scripts/;
-	cp -rT ./build/styles/ $(SRV_ROOT)/styles/;
+	cp -rT ./build/scripts/ "$(SRV_ROOT)/scripts/";
+	cp -rT ./build/styles/ "$(SRV_ROOT)/styles/";
 	cp search.ini /srv/http/build/;
