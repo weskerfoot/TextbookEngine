@@ -16,6 +16,5 @@ clean:
 	rm -r ./build;
 
 install:
-	$(MAKE) clean;
 	$(MAKE);
 	cp -r ./build /srv/http/build;
