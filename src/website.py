@@ -102,7 +102,10 @@ def ClassSearch(configfile=None):
     def resources():
         """ Get Resources """
         notRequired = False
-        params = loads(dict(request.args.items())["data"])
+        try:
+            params = loads(dict(request.args.items())["data"])
+        except KeyError:
+            return dumps("false")
         print params
         author = params["author"]
         title = params["title"]
