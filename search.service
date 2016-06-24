@@ -1,0 +1,12 @@
+[Unit]
+Description=Textbook Search Engine
+After=network.target
+
+[Service]
+User=http
+Group=http
+WorkingDirectory=/srv/http/build
+ExecStart=/usr/bin/uwsgi --ini /srv/http/build/search.ini
+
+[Install]
+WantedBy=multi.user.target
