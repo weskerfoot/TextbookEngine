@@ -120,20 +120,8 @@ a {
     background-image: none;
 }
 
-.logo-div {
-  height:67px;
-  width:150px;
-  margin-right:1%;
-  margin-bottom: 0%;
-  margin-top:1%;
-  margin-left:2%;
-  background-size: 100%;
-  background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-  background-size: cover;
-  background-position: center center;
-  /*background-image: url('https://mgoal.ca/goal_transp.png');*/
+.logo {
+  margin-top: -10px;
 }
 
 .title-div {
