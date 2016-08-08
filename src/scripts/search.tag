@@ -24,6 +24,7 @@ function submit(ev) {
     console.log("submitted");
     this.booksLoading = true;
     this.update();
+    results_passer.trigger("loading");
     var params = $(ev.currentTarget).serialize();
     $.getJSON("/search/fc?"+params,
         (function(courses) {
