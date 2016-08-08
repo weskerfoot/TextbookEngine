@@ -21,7 +21,6 @@
 </search>
 
 <script>
-console.log(this.opts);
 function submit(ev) {
     console.log("submitted");
     console.log(that);
