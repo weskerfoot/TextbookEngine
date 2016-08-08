@@ -16,7 +16,7 @@
         </div>
     </div>
   </form>
-  <div if={ booksLoading } class="loading">
+  <div if={ opts.booksLoading } class="loading">
   </div>
 </search>
 
