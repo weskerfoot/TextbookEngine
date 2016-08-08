@@ -20,6 +20,10 @@
         </div>
     </div>
   </form>
+  <div class="toast">
+    <button class="btn btn-clear float-right"></button>
+    Type a few words of your course's name or the course code (e.g. PSYCH 2B03)
+  </div>
   <div if={ booksLoading } class="search-load">
   </div>
 </search>
