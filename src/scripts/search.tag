@@ -4,7 +4,7 @@
         <div class="container">
           <div class="columns">
             <div class="col-sm-8 form-item">
-              <input class="form-input" placeholder="Description" type="text" name="title"/>
+              <input onfocus={ showHelp } class="form-input" placeholder="Description" type="text" name="title"/>
             </div>
             <div class="col-sm-2 form-item">
               <select class="form-select" aria-labelledby="dLabel" name="sem">
@@ -22,7 +22,7 @@
   </form>
   <div if={ opts.showHelp }
        class="help-toast toast toast-primary">
-    <button onclick={clearHelp}
+    <button onclick={ clearHelp }
             class="btn btn-clear float-right">
     </button>
     Type a few words of your course's name or the course code (e.g. PSYCH 2B03)
@@ -30,6 +30,11 @@
   <div if={ opts.booksLoading } class="search-load">
   </div>
 </search>
+
+function showHelp() {
+  this.opts.showHelp = true;
+  this.update();
+}
 
 function clearHelp() {
   this.opts.showHelp = false;

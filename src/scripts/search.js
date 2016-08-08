@@ -49,7 +49,7 @@ function ResultsPasser() {
 var results_passer = new ResultsPasser();
 
 riot.mount("search", {
-                      showHelp : true,
+                      showHelp : false,
                       booksLoading : false
                      });
 riot.mount("results", {notLoading : true});
