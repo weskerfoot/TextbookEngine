@@ -106,11 +106,12 @@ def indexListing(course):
      }
 
     """
-    courseID = hashsec(course)
+    json_course = classToJSON(course)
+    courseID = hashsec(json_course)
     print es.index(index="oersearch",
             doc_type="course",
             id=courseID,
-            body=course)
+            body=json_course)
 
     # For every course we index, we also create a resource for it
     # This should be an idempotent operation because we're putting it in couchdb
