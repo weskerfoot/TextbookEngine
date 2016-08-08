@@ -22,15 +22,15 @@
 function submit(ev) {
     ev.preventDefault();
     console.log("submitted");
-    console.log(this);
     this.booksLoading = true;
     this.update();
-    console.log(this.booksLoading);
     var params = $(ev.currentTarget).serialize();
     $.getJSON("/search/fc?"+params,
         (function(courses) {
             var fcourses = filterCourses(courses);
             var cgroups = groupsof(3, fcourses);
             results_passer.trigger("new_results", cgroups);
+            this.booksLoading = false;
+            this.update();
     }).bind(this));
 }
