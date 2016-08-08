@@ -8,11 +8,9 @@ function makeResourceGetter(self) {
             "author" : this.bookauthor
         };
         var url = "/search/resources";
-        console.log(params);
         $.getJSON(url, {
             data : JSON.stringify(params)
             }).done(function(results) {
-
             if (results.iarchive) {
                 self.iarchive = results.iarchive[0];
             }
@@ -65,7 +63,24 @@ function autocomplete(element, endpoint) {
   });
 }
 
+function realBook(book) {
+  var noAdoption = book.booktitle.indexOf("No Adoption");
+  var noBooks = book.booktitle.indexOf("No Textbooks");
+  return ((noAdoption == -1) &&
+          (noBooks == -1));
+}
+
 function filterCourses(courses) {
+  var books;
+
+  for (var i in courses) {
+    books = courses[i].books;
+    if ((books.length > 0) &&
+        (!realBook(books[0]))) {
+      courses[i].books = "";
+    }
+  }
+
   return courses.filter(
     function (c) {
       return c.prof != "Staff";

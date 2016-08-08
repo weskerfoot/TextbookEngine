@@ -7,6 +7,7 @@ var self = this;
 results_passer.on("new_results",
   function(data) {
     console.log("new search results detected");
+    console.log(data);
     self.rows = data;
     self.update();
 });
