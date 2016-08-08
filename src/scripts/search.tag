@@ -9,7 +9,8 @@
                 data-tooltip="Type in a couple keywords or the course code (e.g. PSYCH 2B03)"
                 placeholder="Description"
                 type="text"
-                name="title"/>
+                name="title">
+              </input>
             </div>
             <div class="col-sm-2 form-item">
               <select class="form-select" aria-labelledby="dLabel" name="sem">
