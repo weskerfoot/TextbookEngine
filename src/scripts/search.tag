@@ -18,7 +18,10 @@
   </form>
   <div if={ opts.booksLoading } class="loading">
   </div>
+</search>
+
 <script>
+console.log(this.opts);
 function submit(ev) {
     console.log("submitted");
     console.log(that);
@@ -31,4 +34,3 @@ function submit(ev) {
     });
 }
 </script>
-</search>
