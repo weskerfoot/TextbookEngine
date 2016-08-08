@@ -1,8 +1,8 @@
 <class>
     <div class="card-header">
-      <div id='title'> { dept } { title } </div>
-      <div id='prof'> { prof } </div>
-      <div id='sem'> { sem } </div>
+      <div class="text-center wraptext" id='title'> { dept } { title } </div>
+      <div class="wraptext" id='prof'>Taught by: { prof } </div>
+      <div class="wraptext" id='sem'>Running: { sem } </div>
     </div>
     <div if={ books } class="card-body"> 
         <button onclick={ makeShow(this) } class="btn btn-primary show-button">

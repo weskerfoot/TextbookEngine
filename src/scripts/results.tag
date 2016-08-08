@@ -1,6 +1,6 @@
 <results>
       <div class="courses container">
-       <row class="columns" each={ rows } data="{ this }" classrow={ row }></row>
+       <row class="course-row columns" each={ rows } data="{ this }" classrow={ row }></row>
       </div>
 this.rows = [];
 var self = this;

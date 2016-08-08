@@ -24,7 +24,7 @@ function submit(ev) {
     $.getJSON("/search/fc?"+params,
         function(courses) {
             var fcourses = filterCourses(courses);
-            var cgroups = groupsof(4, fcourses);
+            var cgroups = groupsof(3, fcourses);
             results_passer.trigger("new_results", cgroups);
     });
 }
