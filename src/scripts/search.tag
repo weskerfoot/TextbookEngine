@@ -19,10 +19,9 @@
   <div if={ opts.booksLoading } class="loading">
   </div>
 </search>
-
+<script>
 function submit(ev) {
     console.log("submitted");
-    console.log(that);
     var params = $(ev.currentTarget).serialize();
     $.getJSON("/search/fc?"+params,
         function(courses) {
@@ -31,3 +30,4 @@ function submit(ev) {
             results_passer.trigger("new_results", cgroups);
     });
 }
+</script>
