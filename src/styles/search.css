@@ -129,5 +129,5 @@ a {
 
 .page-top {
   font-size: 15px;
-  max-width: 70%;
+  width: 70% !important;
 }
