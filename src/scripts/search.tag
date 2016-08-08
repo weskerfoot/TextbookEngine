@@ -31,9 +31,14 @@
   </div>
 </search>
 
+var showedHelp = false;
+
 function showHelp() {
-  this.opts.showHelp = true;
-  this.update();
+  if (!showedHelp) {
+    showedHelp = true;
+    this.opts.showHelp = true;
+    this.update();
+  }
 }
 
 function clearHelp() {
