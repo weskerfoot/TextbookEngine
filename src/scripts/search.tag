@@ -17,7 +17,6 @@
     </div>
   </form>
 </search>
-<script>
 function submit(ev) {
     console.log("submitted");
     var params = $(ev.currentTarget).serialize();
@@ -28,4 +27,3 @@ function submit(ev) {
             results_passer.trigger("new_results", cgroups);
     });
 }
-</script>
