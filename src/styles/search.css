@@ -7,6 +7,9 @@ header {
 }
 
 .search-load {
+  border-radius: 2.9rem;
+  width: 3rem;
+  height: 2.8rem;
 }
 
 .body {

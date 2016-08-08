@@ -16,7 +16,7 @@
         </div>
     </div>
   </form>
-  <div if={ booksLoading } class="search-load loading">
+  <div if={ booksLoading } class="loading search-load">
   </div>
 </search>
 function submit(ev) {
