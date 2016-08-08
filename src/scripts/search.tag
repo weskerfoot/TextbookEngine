@@ -20,10 +20,12 @@
   </div>
 </search>
 function submit(ev) {
+    ev.preventDefault();
     console.log("submitted");
     console.log(this);
-    this.opts.booksLoading = true;
+    this.booksLoading = true;
     this.update();
+    console.log(this.opts.booksLoading);
     var params = $(ev.currentTarget).serialize();
     $.getJSON("/search/fc?"+params,
         (function(courses) {
