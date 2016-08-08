@@ -18,8 +18,6 @@
   </form>
 <script>
 var that = this;
-</script>
-</search>
 function submit(ev) {
     console.log(that);
     console.log("submitted");
@@ -31,3 +29,5 @@ function submit(ev) {
             results_passer.trigger("new_results", cgroups);
     });
 }
+</script>
+</search>
