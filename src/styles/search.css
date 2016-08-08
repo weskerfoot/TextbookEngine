@@ -123,9 +123,11 @@ a {
 
 .logo {
   margin-top: 20px;
+  margin-right: 20px;
 }
 
 .title {
+  margin-left: 20px;
 }
 
 .page-top {
