@@ -121,13 +121,17 @@ a {
     background-image: none;
 }
 
-.logo {
+@media (max-width: 480px) {
+  .logo {
   margin-top: 20px;
   margin-left: -175px;
+  }
 }
 
-.title {
+@media (max-width: 480px) {
+  .title {
   margin-left: 120px;
+  }
 }
 
 .page-top {
