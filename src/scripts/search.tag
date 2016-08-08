@@ -4,7 +4,12 @@
         <div class="container">
           <div class="columns">
             <div class="col-sm-8 form-item">
-              <input class="form-input" placeholder="Description" type="text" name="title"/>
+              <input
+                class="tooltip tooltip-bottom form-input"
+                data-tooltip="Type in a couple keywords or the course code (e.g. PSYCH 2B03)"
+                placeholder="Description"
+                type="text"
+                name="title"/>
             </div>
             <div class="col-sm-2 form-item">
               <select class="form-select" aria-labelledby="dLabel" name="sem">
