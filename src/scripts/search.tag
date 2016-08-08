@@ -3,7 +3,7 @@
     <div class="form-group">
         <div class="container">
           <div class="columns">
-            <div class="tooltip tooltip-bottom col-sm-8 form-item" data-tooltip="test">
+            <div class="col-sm-8 form-item">
               <input class="form-input" placeholder="Description" type="text" name="title"/>
             </div>
             <div class="col-sm-2 form-item">
