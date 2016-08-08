@@ -25,7 +25,7 @@ function submit(ev) {
     console.log(this);
     this.booksLoading = true;
     this.update();
-    console.log(this.opts.booksLoading);
+    console.log(this.booksLoading);
     var params = $(ev.currentTarget).serialize();
     $.getJSON("/search/fc?"+params,
         (function(courses) {
