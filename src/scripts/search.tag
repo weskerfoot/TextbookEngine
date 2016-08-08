@@ -19,6 +19,8 @@
   <div if={ opts.booksLoading } class="loading">
   </div>
 var that = this;
+</search>
+
 function submit(ev) {
     console.log("submitted");
     console.log(that);
@@ -30,4 +32,3 @@ function submit(ev) {
             results_passer.trigger("new_results", cgroups);
     });
 }
-</search>
