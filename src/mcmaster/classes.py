@@ -344,6 +344,7 @@ def allCourses():
      (getCourses(sem, threadcount=10)
         for sem in (fall, winter, spring_summer)))
 
-#for course in allCourses():
-    #sys.stdout.write("%s, %s, %s, %s\n" % (course.title, course.code, course.dept, course.books))
-    #print course.sections
+if __name__ == "__main__":
+    for course in allCourses():
+        sys.stdout.write("%s, %s, %s, %s\n" % (course.title, course.code, course.dept, course.books))
+        print course.sections
