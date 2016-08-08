@@ -7,9 +7,28 @@ header {
 }
 
 .search-load {
+  color: transparent !important;
+  min-height: 1.6rem;
+  pointer-events: none;
+  position: relative;
+}
+
+.search-load::after {
+  -webkit-animation: loading 500ms infinite linear;
+  animation: loading 500ms infinite linear;
+  border: .2rem solid #5764c6;
   border-radius: 2.9rem;
-  width: 3rem;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
   height: 2.8rem;
+  left: 50%;
+  margin-left: -.8rem;
+  margin-top: -.8rem;
+  position: absolute;
+  top: 50%;
+  width: 3rem;
 }
 
 .body {
