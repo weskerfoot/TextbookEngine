@@ -30,5 +30,5 @@ function submit(ev) {
             results_passer.trigger("new_results", cgroups);
             this.opts.booksLoading = false;
             this.update();
-    });
+    }).bind(this);
 }
