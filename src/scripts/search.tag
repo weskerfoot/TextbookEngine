@@ -1,5 +1,5 @@
 <search>
-  <form class="form-horizontal search-form" onsubmit={ submit } type="submit"method="get">
+  <form class="form-horizontal search-form" onsubmit={ submit.bind(this) } type="submit"method="get">
     <div class="form-group">
         <div class="col-sm-8 form-item">
             <input class="form-input" placeholder="Description" type="text" name="title"/>
@@ -16,10 +16,8 @@
         </div>
     </div>
   </form>
-<script>
-var that = this;
+</search>
 function submit(ev) {
-    console.log(that);
     console.log("submitted");
     var params = $(ev.currentTarget).serialize();
     $.getJSON("/search/fc?"+params,
@@ -29,5 +27,3 @@ function submit(ev) {
             results_passer.trigger("new_results", cgroups);
     });
 }
-</script>
-</search>
