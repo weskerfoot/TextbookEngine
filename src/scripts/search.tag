@@ -21,12 +21,21 @@
     </div>
   </form>
   <div class="help-toast toast toast-primary">
-    <button class="btn btn-clear float-right"></button>
+    <button if={showHelp}
+            onclick={clearHelp}
+            class="btn btn-clear float-right">
+    </button>
     Type a few words of your course's name or the course code (e.g. PSYCH 2B03)
   </div>
   <div if={ booksLoading } class="search-load">
   </div>
 </search>
+var that = this;
+function clearHelp() {
+  that.showHelp = false;
+  that.update();
+}
+
 function submit(ev) {
     ev.preventDefault();
     console.log("submitted");

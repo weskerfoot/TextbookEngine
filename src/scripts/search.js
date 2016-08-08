@@ -48,7 +48,10 @@ function ResultsPasser() {
 
 var results_passer = new ResultsPasser();
 
-riot.mount("search", {booksLoading : false});
+riot.mount("search", {
+                      showHelp : true,
+                      booksLoading : false
+                     });
 riot.mount("results", {notLoading : true});
 
 function autocomplete(element, endpoint) {
