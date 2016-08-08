@@ -22,6 +22,7 @@ var that = this;
 function submit(ev) {
     console.log("submitted");
     that.opts.booksLoading = true;
+    console.log(that.opts.booksLoading);
     that.update();
     var params = $(ev.currentTarget).serialize();
     $.getJSON("/search/fc?"+params,
