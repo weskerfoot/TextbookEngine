@@ -121,14 +121,14 @@ a {
     background-image: none;
 }
 
-@media (max-width: 480px) {
+@media (min-width: 480px) {
   .logo {
   margin-top: 20px;
   margin-left: -175px;
   }
 }
 
-@media (max-width: 480px) {
+@media (min-width: 480px) {
   .title {
   margin-left: 120px;
   }
