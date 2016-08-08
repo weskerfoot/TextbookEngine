@@ -6,6 +6,12 @@ header {
   white-space: pre-wrap !important;
 }
 
+.search-load {
+  border-radius: 2.9rem !important;
+  width: 3rem !important;
+  height: 2.8rem !important;
+}
+
 .body {
   color: #1c75bc;
 }
