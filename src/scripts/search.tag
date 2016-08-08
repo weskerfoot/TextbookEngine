@@ -16,8 +16,6 @@
         </div>
     </div>
   </form>
-  <div if={ opts.booksLoading } class="loading">
-  </div>
 </search>
 <script>
 function submit(ev) {
@@ -26,7 +24,7 @@ function submit(ev) {
     $.getJSON("/search/fc?"+params,
         function(courses) {
             var fcourses = filterCourses(courses);
-            var cgroups = groupsof(3, fcourses);
+            var cgroups = groupsof(4, fcourses);
             results_passer.trigger("new_results", cgroups);
     });
 }
