@@ -21,13 +21,16 @@
 console.log(this);
 function submit(ev) {
     console.log("submitted");
-    console.log(that);
+    that.opts.booksLoading = true;
+    that.update();
     var params = $(ev.currentTarget).serialize();
     $.getJSON("/search/fc?"+params,
         function(courses) {
             var fcourses = filterCourses(courses);
             var cgroups = groupsof(3, fcourses);
             results_passer.trigger("new_results", cgroups);
+            that.opts.booksLoading = false;
+            that.update();
     });
 }
 </search>
