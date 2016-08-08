@@ -125,6 +125,10 @@ a {
   margin-left: -30px;
 }
 
+.title {
+  margin-left: 30px;
+}
+
 .title-div {
   font-size: 25px;
 }
