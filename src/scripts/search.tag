@@ -19,12 +19,15 @@
 </search>
 function submit(ev) {
     console.log("submitted");
-    console.log(this);
+    this.opts.booksLoading = true;
+    this.update();
     var params = $(ev.currentTarget).serialize();
     $.getJSON("/search/fc?"+params,
         function(courses) {
             var fcourses = filterCourses(courses);
             var cgroups = groupsof(3, fcourses);
             results_passer.trigger("new_results", cgroups);
+            this.opts.booksLoading = false;
+            this.update();
     });
 }
