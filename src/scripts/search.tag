@@ -30,7 +30,5 @@ function submit(ev) {
             var fcourses = filterCourses(courses);
             var cgroups = groupsof(3, fcourses);
             results_passer.trigger("new_results", cgroups);
-            this.opts.booksLoading = false;
-            this.update();
     }).bind(this));
 }
