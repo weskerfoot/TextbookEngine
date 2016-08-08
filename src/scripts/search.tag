@@ -21,6 +21,7 @@ var that = this;
 </script>
 </search>
 function submit(ev) {
+    console.log(that);
     console.log("submitted");
     var params = $(ev.currentTarget).serialize();
     $.getJSON("/search/fc?"+params,
