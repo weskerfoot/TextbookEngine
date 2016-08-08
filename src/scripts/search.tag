@@ -19,6 +19,7 @@
 </search>
 function submit(ev) {
     console.log("submitted");
+    console.log(this);
     this.opts.booksLoading = true;
     this.update();
     var params = $(ev.currentTarget).serialize();
