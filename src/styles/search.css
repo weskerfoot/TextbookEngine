@@ -122,9 +122,13 @@ a {
 
 .logo {
   margin-top: 20px;
-  margin-left: -60px;
+  margin-left: -30px;
 }
 
 .title {
-  margin-left: 0px;
+  margin-left: 30px;
+}
+
+.title-div {
+  font-size: 25px;
 }
