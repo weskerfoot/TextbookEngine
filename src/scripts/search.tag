@@ -16,6 +16,9 @@
         </div>
     </div>
   </form>
+<script>
+var that = this;
+</script>
 </search>
 function submit(ev) {
     console.log("submitted");
