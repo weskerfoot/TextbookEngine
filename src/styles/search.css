@@ -140,7 +140,7 @@ a {
 }
 
 .help-toast {
-  background-color: #1c75bc;
+  background-color: #1c75bc !important;
   font-size: 0.75em;
   max-width: 55%;
   margin-top: -10px;
