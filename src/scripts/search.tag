@@ -18,7 +18,7 @@
   </form>
   <div if={ booksLoading } class="loading">
   </div>
-console.log(this);
+var that = this;
 function submit(ev) {
     console.log("submitted");
     that.opts.booksLoading = true;
