@@ -20,9 +20,9 @@
         </div>
     </div>
   </form>
-  <div class="help-toast toast toast-primary">
-    <button if={showHelp}
-            onclick={clearHelp}
+  <div if={showHelp}
+       class="help-toast toast toast-primary">
+    <button onclick={clearHelp}
             class="btn btn-clear float-right">
     </button>
     Type a few words of your course's name or the course code (e.g. PSYCH 2B03)
@@ -30,10 +30,10 @@
   <div if={ booksLoading } class="search-load">
   </div>
 </search>
-var that = this;
+var self = this;
 function clearHelp() {
-  that.showHelp = false;
-  that.update();
+  self.showHelp = false;
+  self.update();
 }
 
 function submit(ev) {
