@@ -22,6 +22,7 @@
 var that = this;
 function submit(ev) {
     console.log("submitted");
+    console.log(that);
     var params = $(ev.currentTarget).serialize();
     $.getJSON("/search/fc?"+params,
         function(courses) {
