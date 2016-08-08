@@ -20,26 +20,26 @@
         </div>
     </div>
   </form>
-  <div if={ showHelp }
+  <div if={ opts.showHelp }
        class="help-toast toast toast-primary">
     <button onclick={clearHelp}
             class="btn btn-clear float-right">
     </button>
     Type a few words of your course's name or the course code (e.g. PSYCH 2B03)
   </div>
-  <div if={ booksLoading } class="search-load">
+  <div if={ opts.booksLoading } class="search-load">
   </div>
 </search>
 
 function clearHelp() {
-  this.showHelp = false;
+  this.opts.showHelp = false;
   this.update();
 }
 
 function submit(ev) {
     ev.preventDefault();
     console.log("submitted");
-    this.booksLoading = true;
+    this.opts.booksLoading = true;
     this.update();
     results_passer.trigger("loading");
     var params = $(ev.currentTarget).serialize();
@@ -48,7 +48,7 @@ function submit(ev) {
             var fcourses = filterCourses(courses);
             var cgroups = groupsof(3, fcourses);
             results_passer.trigger("new_results", cgroups);
-            this.booksLoading = false;
+            this.opts.booksLoading = false;
             this.update();
     }).bind(this));
 }
