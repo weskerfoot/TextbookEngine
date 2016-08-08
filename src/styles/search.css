@@ -141,4 +141,5 @@ a {
 
 .help-toast {
   font-size: 0.85em;
+  max-width: 50%;
 }
