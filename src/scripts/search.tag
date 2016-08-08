@@ -20,7 +20,7 @@
         </div>
     </div>
   </form>
-  <div if={showHelp}
+  <div if={ showHelp }
        class="help-toast toast toast-primary">
     <button onclick={clearHelp}
             class="btn btn-clear float-right">
@@ -30,10 +30,10 @@
   <div if={ booksLoading } class="search-load">
   </div>
 </search>
-var self = this;
+
 function clearHelp() {
-  self.showHelp = false;
-  self.update();
+  this.showHelp = false;
+  this.update();
 }
 
 function submit(ev) {
