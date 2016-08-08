@@ -19,6 +19,7 @@
 </search>
 function submit(ev) {
     console.log("submitted");
+    console.log(this);
     var params = $(ev.currentTarget).serialize();
     $.getJSON("/search/fc?"+params,
         function(courses) {
