@@ -138,3 +138,7 @@ a {
   font-size: 15px;
   width: 50% !important;
 }
+
+.help-toast {
+  font-size: 1em;
+}
