@@ -18,9 +18,7 @@
               </select>
             </div>
             <div class="col-sm-2 form-item">
-              <button onclick={ clearHelp }
-                      class="btn btn-primary"
-                      type="submit">Search</button>
+              <button class="btn btn-primary" type="submit">Search</button>
             </div>
           </div>
         </div>
@@ -69,6 +67,7 @@ function clearHelpTemp() {
 function submit(ev) {
     ev.preventDefault();
     console.log("submitted");
+    clearHelp();
     this.opts.booksLoading = true;
     this.update();
     results_passer.trigger("loading");
