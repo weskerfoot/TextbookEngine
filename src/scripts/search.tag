@@ -4,7 +4,12 @@
         <div class="container">
           <div class="columns">
             <div class="col-sm-8 form-item">
-              <input onfocus={ showHelp } class="form-input" placeholder="Description" type="text" name="title"/>
+              <input onfocusout={ clearHelp }
+                     onfocus={ showHelp }
+                     class="form-input"
+                     placeholder="Description"
+                     type="text"
+                     name="title"/>
             </div>
             <div class="col-sm-2 form-item">
               <select class="form-select" aria-labelledby="dLabel" name="sem">
