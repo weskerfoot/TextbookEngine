@@ -45,7 +45,7 @@ function showHelp() {
     window.setTimeout(
       (function() {
         clearHelp.bind(this)();
-      }).bind(this), 2000);
+      }).bind(this), 15000);
   }
 }
 
