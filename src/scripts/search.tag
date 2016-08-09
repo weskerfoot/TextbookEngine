@@ -4,8 +4,7 @@
         <div class="container">
           <div class="columns">
             <div class="col-sm-8 form-item">
-              <input onfocusout={ clearHelp }
-                     onfocus={ showHelp }
+              <input onfocus={ showHelp }
                      class="form-input"
                      placeholder="Description"
                      type="text"
