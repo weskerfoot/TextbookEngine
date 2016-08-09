@@ -1,7 +1,7 @@
 <book>
   <div class="text-clip toast" if={ opts.title && opts.author }>
     <p>
-      <dt data-tooltip="Click to find books" class="tooltip book-title text-center">
+      <dt class="book-title text-center">
         <button onclick={ makeResourceGetter(this) } class="btn btn-link">
           { opts.title }
         </button>
