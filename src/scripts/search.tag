@@ -35,18 +35,18 @@
   </div>
 </search>
 
-var showedHelp = false;
-var waiting = false;
+this.showedHelp = false;
+this.waiting = false;
 
 function showHelp() {
-  if (!showedHelp) {
+  if (!this.showedHelp) {
     this.opts.showHelp = true;
     this.update();
     if (!waiting) {
       waiting = true;
       window.setTimeout(
       (function() {
-        waiting = false;
+        this.waiting = false;
         clearHelpTemp.bind(this)();
       }).bind(this), 10000);
     }
@@ -54,7 +54,7 @@ function showHelp() {
 }
 
 function clearHelp() {
-  showedHelp = true;
+  this.showedHelp = true;
   this.opts.showHelp = false;
   this.update();
 }
@@ -65,8 +65,9 @@ function clearHelpTemp() {
 }
 
 function submit(ev) {
-    clearHelp();
     ev.preventDefault();
+    this.showedHelp = true;
+    this.opts.showHelp = false;
     console.log("submitted");
     this.opts.booksLoading = true;
     this.update();
