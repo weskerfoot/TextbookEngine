@@ -5,7 +5,7 @@
       <div class="wraptext" id='sem'>Running: { sem } </div>
     </div>
     <div if={ books } class="card-body"> 
-        <button onclick={ makeShow(this) } class="btn btn-primary show-button tooltip" data-tooltip="Click textbooks to find resources">
+        <button onclick={ makeShow(this) } class="btn btn-primary show-button">
             <strong>Show Textbooks</strong>
         </button>
         <div if={ showBooks }>
