@@ -42,6 +42,10 @@ function showHelp() {
     showedHelp = true;
     this.opts.showHelp = true;
     this.update();
+    window.setTimeout(
+      (function() {
+        clearHelp.bind(this)();
+      }).bind(this), 2000);
   }
 }
 
