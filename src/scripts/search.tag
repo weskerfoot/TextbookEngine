@@ -18,7 +18,7 @@
               </select>
             </div>
             <div class="col-sm-2 form-item">
-              <button onsubmit={ clearHelp }
+              <button onclick={ clearHelp }
                       class="btn btn-primary"
                       type="submit">Search</button>
             </div>
