@@ -36,10 +36,10 @@
   </div>
 </search>
 
-var showedHelp = false;
+this.showedHelp = false;
 
 function showHelp() {
-  if (!showedHelp) {
+  if (!this.showedHelp) {
     this.opts.showHelp = true;
     this.update();
   }
@@ -47,7 +47,7 @@ function showHelp() {
 
 function clearHelp() {
   this.opts.showHelp = false;
-  showedHelp = true;
+  this.showedHelp = true;
   this.update();
 }
 
