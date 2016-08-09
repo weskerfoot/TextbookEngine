@@ -53,6 +53,7 @@ function clearHelp() {
 }
 
 function clearHelpTemp() {
+  console.log("CLEAR HELP TEMP FIRED");
   this.opts.showHelp = false;
   this.update();
 }
