@@ -21,8 +21,8 @@
         </div>
     </div>
     <div class="toast" if={ !books }>
-        <p>No books at this time</p>
-        <p>Check back later, or verify the course has books</p>
+        <p class="wraptext">No books at this time</p>
+        <p class="wraptext">Check back later, or verify the course has books</p>
     </div>
 </class>
 

@@ -9,6 +9,7 @@ from json import dumps, loads
 from itertools import chain, imap
 
 from hashlib import sha1
+from syslog import syslog
 
 from textbookExceptions import UnIndexable
 
@@ -170,6 +171,7 @@ def searchTerms(terms):
     """
     Run a search for courses
     """
+    syslog(repr(terms))
 
     # A list of all the queries we want to run
     qs = [searchers[field](term) for

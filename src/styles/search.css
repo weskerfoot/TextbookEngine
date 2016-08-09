@@ -43,9 +43,18 @@ a {
   background-color: #1c75bc !important;
 }
 
-.courses {
+@media (min-width: 1335px) {
+  .courses {
   margin-top: 100px;
   max-width: 75%;
+  }
+}
+
+@media (max-width: 1366px) {
+  .courses {
+    margin-top: 100px;
+    max-width: 85%;
+  }
 }
 
 .course {
@@ -140,8 +149,9 @@ a {
 }
 
 .help-toast {
-  background-color: #1c75bc !important;
+  background-color: rgba(28,117,188, 0.7) !important;
   font-size: 0.8em;
   max-width: 55%;
   margin-top: -10px;
+  border: none;
 }

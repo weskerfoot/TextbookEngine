@@ -14,7 +14,7 @@
               <select class="form-select" aria-labelledby="dLabel" name="sem">
                 <option value="Fall">Fall</option>
                 <option value="Winter" selected>Winter</option>
-                <option value="Summer">Summer</option>
+                <option value="Spring/Summer">Spring/Summer</option>
               </select>
             </div>
             <div class="col-sm-2 form-item">
