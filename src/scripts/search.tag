@@ -4,7 +4,7 @@
         <div class="container">
           <div class="columns">
             <div class="col-sm-8 form-item">
-              <input onfocusout={ clearHelpTemp }
+              <input onfocusout={ clearHelp }
                      onfocus={ showHelp }
                      class="form-input"
                      placeholder="Description"
@@ -36,24 +36,17 @@
   </div>
 </search>
 
-this.showedHelp = false;
+var showedHelp = false;
 
 function showHelp() {
-  if (!this.showedHelp) {
+  if (!showedHelp) {
+    showedHelp = true;
     this.opts.showHelp = true;
     this.update();
   }
 }
 
 function clearHelp() {
-  console.log("CLEAR HELP FIRED");
-  this.opts.showHelp = false;
-  this.showedHelp = true;
-  this.update();
-}
-
-function clearHelpTemp() {
-  console.log("CLEAR HELP TEMP FIRED");
   this.opts.showHelp = false;
   this.update();
 }
