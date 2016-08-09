@@ -65,6 +65,7 @@ function clearHelpTemp() {
 }
 
 function submit(ev) {
+    clearHelp();
     ev.preventDefault();
     console.log("submitted");
     this.opts.booksLoading = true;
