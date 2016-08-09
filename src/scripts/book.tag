@@ -3,7 +3,7 @@
     <p>
       <dt class="book-title text-center">
         <button onclick={ makeResourceGetter(this) }
-                class="btn btn-link tooltip tooltip-right"
+                class="btn tooltip tooltip-right"
                 data-tooltip="Click to find books"
                 >
           { opts.title }
