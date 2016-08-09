@@ -39,17 +39,22 @@ var showedHelp = false;
 
 function showHelp() {
   if (!showedHelp) {
-    showedHelp = true;
     this.opts.showHelp = true;
     this.update();
     window.setTimeout(
       (function() {
-        clearHelp.bind(this)();
+        clearHelpTemp.bind(this)();
       }).bind(this), 15000);
   }
 }
 
 function clearHelp() {
+  showedHelp = true;
+  this.opts.showHelp = false;
+  this.update();
+}
+
+function clearHelpTemp() {
   this.opts.showHelp = false;
   this.update();
 }
