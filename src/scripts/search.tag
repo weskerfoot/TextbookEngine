@@ -46,6 +46,7 @@ function showHelp() {
 }
 
 function clearHelp() {
+  console.log("CLEAR HELP FIRED");
   this.opts.showHelp = false;
   this.showedHelp = true;
   this.update();
