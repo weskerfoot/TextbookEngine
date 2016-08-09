@@ -36,15 +36,20 @@
 </search>
 
 var showedHelp = false;
+var waiting = false;
 
 function showHelp() {
   if (!showedHelp) {
     this.opts.showHelp = true;
     this.update();
-    window.setTimeout(
+    if (!waiting) {
+      waiting = true;
+      window.setTimeout(
       (function() {
+        waiting = false;
         clearHelpTemp.bind(this)();
       }).bind(this), 10000);
+    }
   }
 }
 
