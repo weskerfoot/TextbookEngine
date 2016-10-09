@@ -1,7 +1,8 @@
 #! /usr/bin/python2
 from search import indexListing
 from textbookExceptions import UnIndexable
-from mcmaster.classes import allCourses, classToJSON, indexListing
+from mcmaster.classes import allCourses
+from search import indexListing, createIndex
 from itertools import imap
 
 try:
@@ -11,7 +12,7 @@ except Exception as e:
     print e
 
 print "Downloading course info"
-for c in imap(classToJSON, allCourses()):
+for c in allCourses():
     try:
         print indexListing(c)
     except UnIndexable as e:

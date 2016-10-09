@@ -118,9 +118,18 @@ class Section(dict):
         self.time = time.encode("UTF-8")
         self.loc = loc.encode("UTF-8")
         self.prof = prof.encode("UTF-8")
-        self.sem = sem.encode("UTF-8")
+        self._sem = sem.encode("UTF-8")
         self._date = False
         self._day = False
+
+    @property
+    def sem(self):
+        if self._sem == fall:
+            return "Fall"
+        elif self._sem == winter:
+            return "Winter"
+        else:
+            return "Spring/Summer"
 
     @property
     def date(self):
@@ -341,7 +350,7 @@ def getCourses(semester, threadcount=10):
 
 def allCourses():
     return chain.from_iterable(
-     (getCourses(sem, threadcount=10)
+     (getCourses(sem, threadcount=25)
         for sem in (fall, winter, spring_summer)))
 
 if __name__ == "__main__":

@@ -6,6 +6,31 @@ header {
   white-space: pre-wrap !important;
 }
 
+.search-load {
+  color: transparent !important;
+  min-height: 1.6rem;
+  pointer-events: none;
+  position: relative;
+}
+
+.search-load::after {
+  -webkit-animation: loading 500ms infinite linear;
+  animation: loading 500ms infinite linear;
+  border: .2rem solid #5764c6;
+  border-radius: 2.9rem;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  content: "";
+  display: block;
+  height: 2.8rem;
+  left: 50%;
+  margin-left: -.8rem;
+  margin-top: -.8rem;
+  position: absolute;
+  top: 50%;
+  width: 3rem;
+}
+
 .body {
   color: #1c75bc;
 }
@@ -18,9 +43,18 @@ a {
   background-color: #1c75bc !important;
 }
 
-.courses {
+@media (min-width: 1335px) {
+  .courses {
   margin-top: 100px;
   max-width: 75%;
+  }
+}
+
+@media (max-width: 1366px) {
+  .courses {
+    margin-top: 100px;
+    max-width: 85%;
+  }
 }
 
 .course {
@@ -34,7 +68,7 @@ a {
 }
 
 .search-form {
-  margin-top: 9%;
+  margin-top: 6%;
   -webkit-appearance: none !important;
 }
 
@@ -43,8 +77,9 @@ a {
 }
 
 .form-item {
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-right: -15px;
 }
 
 #title {
@@ -95,22 +130,28 @@ a {
     background-image: none;
 }
 
-.logo-div {
-  height:67px;
-  width:150px;
-  margin-right:1%;
-  margin-bottom: 0%;
-  margin-top:1%;
-  margin-left:2%;
-  background-size: 100%;
-  background-size: cover;
-    -webkit-background-size: cover;
-    -o-background-size: cover;
-  background-size: cover;
-  background-position: center center;
-  /*background-image: url('https://mgoal.ca/goal_transp.png');*/
+@media (min-width: 480px) {
+  .logo {
+  margin-top: 20px;
+  margin-left: -175px;
+  }
 }
 
-.title-div {
-  font-size: 25px;
+@media (min-width: 480px) {
+  .title {
+  margin-left: 80px;
+  }
+}
+
+.page-top {
+  font-size: 15px;
+  width: 50% !important;
+}
+
+.help-toast {
+  background-color: rgba(28,117,188, 0.7) !important;
+  font-size: 0.8em;
+  max-width: 55%;
+  margin-top: -10px;
+  border: none;
 }

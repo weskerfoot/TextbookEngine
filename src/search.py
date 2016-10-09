@@ -9,6 +9,7 @@ from json import dumps, loads
 from itertools import chain, imap
 
 from hashlib import sha1
+from syslog import syslog
 
 from textbookExceptions import UnIndexable
 
@@ -106,11 +107,12 @@ def indexListing(course):
      }
 
     """
-    courseID = hashsec(course)
+    json_course = classToJSON(course)
+    courseID = hashsec(json_course)
     print es.index(index="oersearch",
             doc_type="course",
             id=courseID,
-            body=course)
+            body=json_course)
 
     # For every course we index, we also create a resource for it
     # This should be an idempotent operation because we're putting it in couchdb
@@ -169,6 +171,7 @@ def searchTerms(terms):
     """
     Run a search for courses
     """
+    syslog(repr(terms))
 
     # A list of all the queries we want to run
     qs = [searchers[field](term) for

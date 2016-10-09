@@ -23,7 +23,7 @@
             </button>
           </a>
         </p>
-        <p class="centered" if={ noResources }>
+        <p class="centered wraptext" if={ noResources }>
           Couldn't find anything, sorry :(
         </p>
       </dd>
