@@ -1,5 +1,7 @@
+$blue: #1c75bc;
+
 header {
-  color: #1c75bc;
+  color: $blue;
 }
 
 .wraptext {
@@ -32,15 +34,15 @@ header {
 }
 
 .body {
-  color: #1c75bc;
+  color: $blue;
 }
 
 a {
-  color: #1c75bc !important;
+  color: $blue !important;
 }
 
 .btn-primary {
-  background-color: #1c75bc !important;
+  background-color: $blue !important;
 }
 
 .courses {
