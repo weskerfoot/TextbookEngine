@@ -43,15 +43,14 @@ a {
   background-color: #1c75bc !important;
 }
 
-@media (min-width: 1335px) {
-  .courses {
-  margin-top: 100px;
-  max-width: 75%;
-  }
-}
+.courses {
 
-@media (max-width: 1366px) {
-  .courses {
+  @media (min-width: 1335px) {
+    margin-top: 100px;
+    max-width: 75%;
+  }
+
+  @media (max-width: 1366px) {
     margin-top: 100px;
     max-width: 85%;
   }
