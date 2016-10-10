@@ -74,8 +74,6 @@ def createIndex(name):
     """
     This creates a new index in elasticsearch
     An index is like a schema in a regular database
-    Create an elasticsearch index
-
     """
     indices = elasticsearch.client.IndicesClient(es)
 
@@ -113,18 +111,6 @@ def indexListing(course):
             doc_type="course",
             id=courseID,
             body=json_course)
-
-    # For every course we index, we also create a resource for it
-    # This should be an idempotent operation because we're putting it in couchdb
-    # And we're using the id obtained from the hash function, so it should just update the document
-    # no need to delete anything
-    #try:
-        #courseDept = course[0]["title"].strip().split(" ")[0].strip()
-        #courseCode = course[0]["title"].strip().split(" ")[1].strip()
-        #print "DEPARTMENT = \"%s\", COURSECODE = \"%s\"" % (courseDept, courseCode)
-        #print createResource(textbookInfo, course[0], courseDept, courseCode, courseID)
-    #except:
-        #print "Couldn't create the resource associated with %s" % course
 
 def termSearch(field):
     """
