@@ -21,10 +21,10 @@
               </dl>
           </div>
       </div>
-    </div>
-    <div class="toast" if={ !books }>
+      <div class="toast" if={ !books }>
         <p class="wraptext">No books at this time</p>
         <p class="wraptext">Check back later, or verify the course has books</p>
+      </div>
     </div>
 </class>
 
