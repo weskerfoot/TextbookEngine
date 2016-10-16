@@ -48,12 +48,12 @@ a {
 .courses {
 
   @media (min-width: 1335px) {
-    margin-top: 100px;
+    margin-top: 20px;
     max-width: 75%;
   }
 
   @media (max-width: 1366px) {
-    margin-top: 100px;
+    margin-top: 20px;
     max-width: 85%;
   }
 }
@@ -94,7 +94,7 @@ a {
     z-index: 1000;
     float: left;
     display: none;
-    min-width: 160px;   
+    min-width: 160px;
     padding: 4px 0;
     margin: 0 0 10px 25px;
     list-style: none;
