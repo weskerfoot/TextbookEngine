@@ -8,6 +8,7 @@ function makeResourceGetter(self) {
             "author" : this.bookauthor
         };
         var url = "/search/resources";
+
         $.getJSON(url, {
             data : JSON.stringify(params)
             }).done(function(results) {
@@ -22,8 +23,8 @@ function makeResourceGetter(self) {
             if (!(results.openlib && results.iarchive)) {
                 self.noResources = true;
             }
-            self.loading = false;
-            self.update();
+
+            self.update({"loading" : false});
             });
     }
     return getResources;
@@ -52,19 +53,8 @@ riot.mount("search", {
                       showHelp : false,
                       booksLoading : false
                      });
-riot.mount("results", {notLoading : true});
 
-function autocomplete(element, endpoint) {
-  // The element should be an input class
-  $(element).autocomplete({
-    source : endpoint,
-    my : "right top",
-    at : "left bottom",
-    collision : "none",
-    autofocus : true,
-    delay     : 100
-  });
-}
+riot.mount("results", {notLoading : true});
 
 function realBook(book) {
   var noAdoption = book.booktitle.indexOf("No Adoption");
@@ -84,31 +74,18 @@ function filterCourses(courses) {
     }
   }
 
-  return courses.filter(
+  return R.filter(
     function (c) {
       return c.prof != "Staff";
-    });
-}
-
-function take(n, xs) {
-  return xs.slice(0, n);
-}
-
-function drop(n, xs) {
-  return xs.slice(n, xs.length);
+    }, courses);
 }
 
 function groupsof(n, xs) {
-  var groups = [];
-  while (xs.length != 0) {
-    if (xs.length < n) {
-      groups.push({"row" : take(xs.length, xs)} );
-      xs = drop(xs.length, xs);
-    }
-    else {
-      groups.push({"row" : take(n, xs)});
-      xs = drop(n, xs);
-    }
-  }
-  return groups;
+  return R.unfold(
+    function(xs) {
+      if (R.length(xs) > 0) {
+        return [{"row" : R.take(n, xs)}, R.drop(n, xs)];
+      }
+      return false;
+    }, xs);
 }

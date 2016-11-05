@@ -300,7 +300,6 @@ def request(codes, lists, semester):
             return
         codes.task_done()
 
-
 class CourseInfo(object):
     def __init__(self, threadcount, semester):
         self._codes = False
