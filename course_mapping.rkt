@@ -10,7 +10,7 @@
       ,(str "time")
       ,(str "loc")
       ,(str "prof")
-      ,(str "sem")
+      ,(atom "sem")
       ,(str "day")))
 
       ,(estruct "textbooks"

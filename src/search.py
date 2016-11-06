@@ -136,6 +136,12 @@ def search(field):
         return q
     return s
 
+def filterSem(term):
+    return Q("terms",
+            **{
+                "sem" : [term]
+                })
+
 def join(x, y):
     """
     Join two queries
@@ -178,6 +184,7 @@ def searchTerms(terms):
         .query(q))[0:100] # only return up to 100 results for now
 
     results = s.execute()
+    syslog(repr(results))
 
     filtered = [
                  (secs, filterSections(secs)[0].to_dict()) # get rid of tutorials
@@ -213,5 +220,5 @@ searchers = {
     "loc"   : search("loc"),
     "time"  : search("time"),
     "prof"  : search("prof"),
-    "day"   : search("day"),
+    "day"   : search("day")
     }

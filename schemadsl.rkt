@@ -36,6 +36,8 @@
 
 (define str (prop "string"))
 
+(define atom (prop "string" "not_analyzed"))
+
 (define num (prop "integer"))
 
 (define date (prop "date"))

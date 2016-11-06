@@ -76,11 +76,12 @@ function filterCourses(courses) {
 
   return R.filter(
     function (c) {
-      return c.prof != "Staff";
+      return c.prof != "Staff" && c.sem == "Winter";
     }, courses);
 }
 
 function groupsof(n, xs) {
+  /* Chunk a list into groups of n size */
   return R.unfold(
     function(xs) {
       if (R.length(xs) > 0) {
