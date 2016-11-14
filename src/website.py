@@ -1,17 +1,16 @@
-#! /usr/bin/python2
+#! /usr/bin/python3
 from functools import partial
 
 from flask import Blueprint, abort, Flask, render_template, flash, request, send_from_directory
 from flask_bootstrap import Bootstrap
 from flask_appconfig import AppConfig
 
-from urllib import unquote
 from search import searchTerms
 
 from openlibrary import bookUrls
 
 from archive import searchIA
-from urllib import quote, unquote
+from urllib.parse import quote, unquote
 from json import dumps, loads
 
 from werkzeug.contrib.cache import MemcachedCache
@@ -20,8 +19,8 @@ cache = MemcachedCache(['127.0.0.1:11211'])
 import os
 
 def predict(fieldtype, term):
-    print fieldtype
-    print term
+    print(fieldtype)
+    print(term)
     if not term:
         return "[]"
     else:
@@ -90,7 +89,7 @@ def ClassSearch(configfile=None):
     @blueprint.route("/fc", methods=("GET", "POST"))
     def fc():
         """ Filter Courses """
-        print "trying to get courses"
+        print("trying to get courses")
         params = dict(request.args.items())
         for key, val in params.iteritems():
             if val in defaults:
@@ -106,7 +105,7 @@ def ClassSearch(configfile=None):
             params = loads(dict(request.args.items())["data"])
         except KeyError:
             return dumps("false")
-        print params
+        print(params)
         author = params["author"]
         title = params["title"]
 
@@ -116,11 +115,11 @@ def ClassSearch(configfile=None):
 
         # Cache the result of the open library search
         openlib = cacheit("openlib"+title+author, lambda : bookUrls(title, author))
-        print openlib
+        print(openlib)
 
         # cache the result of an internet archive search
         iarchive = cacheit("iarchive"+title+author, lambda : searchIA(title, author))
-        print iarchive
+        print(iarchive)
 
         if not (any(openlib) or any(iarchive)):
             # We literally could not find ANYTHING

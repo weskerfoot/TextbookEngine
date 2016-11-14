@@ -1,7 +1,7 @@
-#! /usr/bin/python2
+#! /usr/bin/python3
 
 from sys import argv
-from itertools import chain, islice, izip_longest, izip as zip
+from itertools import chain, islice, zip_longest
 from re import search, sub
 from functools import total_ordering
 from re import sub
@@ -34,7 +34,7 @@ class Book(object):
 def grouper(n, iterable, fillvalue=None):
     "grouper(3, 'ABCDEFG', 'x') --> ABC DEF Gxx"
     args = [iter(iterable)] * n
-    return izip_longest(fillvalue=fillvalue, *args)
+    return zip_longest(fillvalue=fillvalue, *args)
 
 searchUrl = "https://campusstore.mcmaster.ca/cgi-mcm/ws/txsub.pl?wsDEPTG1=%s&wsDEPTDESC1=&wsCOURSEG1=%s&crit_cnt=1"
 

@@ -1,6 +1,6 @@
-#! /usr/bin/python2
+#! /usr/bin/python3
 
-from urllib import quote
+from urllib.parse import quote
 from json import loads, dumps
 
 import requests as req
@@ -11,7 +11,7 @@ def searchIA(title, author):
     """
     Do a search on The Internet Archive for a book
     """
-    print "running a search"
+    print("running a search")
     requrl = searchUrl.format(quote(title + " " + author))
     try:
         results = loads(req.get(requrl).text[9:][0:-1])
@@ -20,7 +20,7 @@ def searchIA(title, author):
 
     rownum = results["responseHeader"]["params"]["rows"]
     if rownum < 1:
-        print "Couldn't find results for %s %s" % (title, author)
+        print("Couldn't find results for %s %s" % (title, author))
         return []
     docs = results["response"]["docs"]
     urls = []

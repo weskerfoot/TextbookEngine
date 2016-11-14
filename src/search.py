@@ -1,4 +1,4 @@
-#! /usr/bin/python2
+#! /usr/bin/python3
 
 import elasticsearch
 
@@ -6,7 +6,7 @@ from elasticsearch_dsl import FacetedSearch, Search, Q
 from elasticsearch_dsl.aggs import Terms, DateHistogram
 from sys import exit, stderr
 from json import dumps, loads
-from itertools import chain, imap
+from itertools import chain
 
 from hashlib import sha1
 from syslog import syslog
@@ -77,9 +77,9 @@ def createIndex(name):
     """
     indices = elasticsearch.client.IndicesClient(es)
 
-    print indices.create(name)
+    print(indices.create(name))
     with open("../course.json", "r") as mapping:
-        print indices.put_mapping("course", loads(mapping.read()), name)
+        print(indices.put_mapping("course", loads(mapping.read()), name))
 
 def indexListing(course):
     """
@@ -107,10 +107,10 @@ def indexListing(course):
     """
     json_course = classToJSON(course)
     courseID = hashsec(json_course)
-    print es.index(index="oersearch",
+    print(es.index(index="oersearch",
             doc_type="course",
             id=courseID,
-            body=json_course)
+            body=json_course))
 
 def termSearch(field):
     """

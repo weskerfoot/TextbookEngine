@@ -1,4 +1,4 @@
-#! /usr/bin/python2
+#! /usr/bin/python3
 
 from json import loads, load
 from re import sub, split
@@ -92,6 +92,6 @@ def meanCosts():
     return graph.render_table(style=True, transpose=True)
 
 for x in courses():
-    print x
+    print(x)
 #print meanCosts()
 #print meanFacultyCosts()

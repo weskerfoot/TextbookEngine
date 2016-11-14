@@ -1,7 +1,7 @@
-#! /usr/bin/python2
+#! /usr/bin/python3
 
 from sys import argv
-from itertools import chain, islice, izip as zip
+from itertools import chain, islice
 from re import search, sub
 from functools import total_ordering
 
@@ -18,8 +18,13 @@ fall = "2169"
 spring_summer = "2175"
 winter = "2171"
 
+def parseSem(sem):
+    if sem == "TBA":
+        return "TBA"
+    return sem[0] + sem[2:4] + sem[6]
+
 # threading stuff
-import Queue as q
+import queue as q
 import threading as thd
 
 baseurl = "https://applicants.mcmaster.ca/psp/prepprd/EMPLOYEE/PSFT_LS/c/COMMUNITY_ACCESS.CLASS_SEARCH.GBL"
@@ -124,10 +129,12 @@ class Section(dict):
 
     @property
     def sem(self):
-        if self._sem == fall:
+        if parseSem(self._sem) == fall:
             return "Fall"
-        elif self._sem == winter:
+        elif parseSem(self._sem) == winter:
             return "Winter"
+        elif parseSem(self._sem) == "TBA":
+            return "TBA"
         else:
             return "Spring/Summer"
 
@@ -140,7 +147,7 @@ class Section(dict):
                 assert len(self._day) == 2
                 day = self._day
             else:
-                day = [day[n:n+2] for n in xrange(0, len(day)-1, 2)]
+                day = [day[n:n+2] for n in range(0, len(day)-1, 2)]
 
             self._date = (day, timeparse(start), timeparse(end))
 
@@ -286,7 +293,7 @@ class MosReq(object):
             self.codes_ = list(chain.from_iterable(
                                 map((lambda l:
                                     self.getCodes(chr(l))),
-                                    xrange(65, 91))))
+                                    range(65, 91))))
         return self.codes_
 
 def request(codes, lists, semester):
@@ -320,7 +327,7 @@ class CourseInfo(object):
         lists = q.Queue()
         threads = []
         thread = None
-        for i in xrange(self.threadcount):
+        for i in range(self.threadcount):
             thread = thd.Thread(group=None, target=request, args=(qcodes, lists, self.semester))
             threads.append(thread)
             thread.start()
@@ -355,4 +362,4 @@ def allCourses():
 if __name__ == "__main__":
     for course in allCourses():
         sys.stdout.write("%s, %s, %s, %s\n" % (course.title, course.code, course.dept, course.books))
-        print course.sections
+        print(course.sections)

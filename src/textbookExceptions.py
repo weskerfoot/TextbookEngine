@@ -1,4 +1,4 @@
-#! /usr/bin/python2
+#! /usr/bin/python3
 
 class UnIndexable(Exception):
     def __init__(self, course):
