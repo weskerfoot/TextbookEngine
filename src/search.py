@@ -220,5 +220,6 @@ searchers = {
     "loc"   : search("loc"),
     "time"  : search("time"),
     "prof"  : search("prof"),
-    "day"   : search("day")
+    "day"   : search("day"),
+    "sem"   : filterSem
     }
