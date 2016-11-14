@@ -14,6 +14,7 @@ except Exception as e:
 print "Downloading course info"
 for c in allCourses():
     try:
+        print c
         print indexListing(c)
     except UnIndexable as e:
         print e
