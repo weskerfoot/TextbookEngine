@@ -91,7 +91,7 @@ def ClassSearch(configfile=None):
         """ Filter Courses """
         print("trying to get courses")
         params = dict(request.args.items())
-        for key, val in params.iteritems():
+        for key, val in params.items():
             if val in defaults:
                 del params[key]
         results = searchTerms(params)

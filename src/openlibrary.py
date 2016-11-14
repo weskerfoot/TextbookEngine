@@ -15,7 +15,7 @@ def bookUrls(title, author):
     requrl = searchurl % (quote(author), quote(title))
     results = loads(req.get(requrl).text)
     for result in results["docs"][0:2]:
-        if result.has_key("edition_key"):
+        if "edition_key" in result:
             yield "https://openlibrary.org/books/%s" % result["edition_key"][0]
 
 # 'http://openlibrary.org/query.json?type=/type/edition&title=The+Personality+Puzzle'

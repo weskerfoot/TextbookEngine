@@ -238,7 +238,7 @@ class MosReq(object):
 
         # Let the server set some cookies before doing the searching
         cookies = {}
-        for key, val in s.cookies.iteritems():
+        for key, val in s.cookies.items():
             cookies[key] = val
         self.cookies = cookies
         self.statenum = False

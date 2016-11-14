@@ -70,7 +70,7 @@ def books(dept, code, withPrices):
     pricelist = prices(parsed)
 
     for div in parsed.xpath(".//div"):
-        if (div.attrib.has_key("id") and
+        if ("id" in div.attrib and
             "prodDesc" in div.attrib["id"]):
 
             textbook = div.text_content()

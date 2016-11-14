@@ -13,6 +13,8 @@ from syslog import syslog
 
 from textbookExceptions import UnIndexable
 
+from functools import reduce
+
 # Generic instance of elasticsearch right now
 es = elasticsearch.Elasticsearch()
 
@@ -168,8 +170,8 @@ def searchTerms(terms):
     # A list of all the queries we want to run
     qs = [searchers[field](term) for
             field, term in
-            terms.iteritems() if
-                term and searchers.has_key(field)]
+            terms.items() if
+                term and field in searchers]
 
     if not qs:
         # No queries = no results
@@ -202,9 +204,9 @@ def searchTerms(terms):
         if obj.books:
             secs["books"] = [
                              {
-                               "booktitle"  : summarize(book[0].encode("ASCII")),
-                               "bookauthor" : book[1].encode("ASCII"),
-                               "bookprice"  : book[2].encode("ASCII")
+                               "booktitle"  : summarize(book[0]),
+                               "bookauthor" : book[1],
+                               "bookprice"  : book[2]
                              }
                                 for book in obj.books
                             ]
