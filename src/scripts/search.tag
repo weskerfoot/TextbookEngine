@@ -24,6 +24,7 @@
         </div>
     </div>
   </form>
+
   <div if={ opts.showHelp }
        class="help-toast toast toast-primary">
     <button onclick={ clearHelp }
@@ -31,6 +32,7 @@
     </button>
     Type keywords of your course's name or the course code (e.g. PSYCH 2B03)
   </div>
+
   <div if={ opts.booksLoading } class="search-load">
   </div>
 </search>

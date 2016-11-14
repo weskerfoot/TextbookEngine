@@ -76,7 +76,7 @@ function filterCourses(courses) {
 
   return R.filter(
     function (c) {
-      return c.prof != "Staff" && c.sem == "Winter";
+      return c.prof != "Staff";
     }, courses);
 }
 
