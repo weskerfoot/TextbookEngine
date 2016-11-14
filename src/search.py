@@ -139,7 +139,7 @@ def search(field):
 def filterSem(term):
     return Q("terms",
             **{
-                "sem" : [term]
+                "sections.sem" : [term]
                 })
 
 def join(x, y):
