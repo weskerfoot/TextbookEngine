@@ -1,29 +1,27 @@
 <book>
   <div class="text-clip toast">
     <p>
-      <dt class="book-title text-center">
-        <button onclick={getresources} class="btn btn-link">
-          { title }
-        </button>
-      </dt>
+      <button onclick={getresources} class="btn btn-link">
+        { booktitle }
+      </button>
       <dd>
         <div if={ loading } class="loading">
         </div>
-        <p if={ this.iarchive }>
+        <p if={ iarchive }>
           <a target="_blank" href="{ iarchive }">
             <button class="centered btn btn-link">
               Internet Archive Result
             </button>
           </a>
         </p>
-        <p if={ this.openlib }>
+        <p if={ openlib }>
           <a target="_blank" href="{ openlib }">
             <button class="centered btn btn-link">
               Open Library Result
             </button>
           </a>
         </p>
-        <p class="centered wraptext" if={ noresources }>
+        <p if={ noresources } class="centered wraptext">
           Couldn't find anything, sorry :(
         </p>
       </dd>
@@ -36,12 +34,13 @@ this.noresources = false;
 
 var self = this;
 
-getresources() {
+getresources(ev) {
+  ev.preventDefault();
   self.loading = true;
   self.update();
   var params = {
-      "title" : this.booktitle,
-      "author" : this.bookauthor
+      "title" : self.booktitle,
+      "author" : self.bookauthor
   };
   var url = "/search/resources";
 
@@ -60,7 +59,8 @@ getresources() {
       self.noresources = true;
     }
 
-    self.update({"loading" : false});
+    self.loading = false;
+    self.update();
   });
 }
 

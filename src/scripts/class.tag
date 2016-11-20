@@ -11,12 +11,7 @@
           </button>
           <div if={ this.booksshown }>
               <dl>
-                  <book each={ books }
-                        data="{ this }"
-                        resources=""
-                        title={ booktitle }
-                        author={ bookauthor }
-                        price={ bookprice }>
+                  <book each={ books } data="{ this }">
                   </book>
               </dl>
           </div>
