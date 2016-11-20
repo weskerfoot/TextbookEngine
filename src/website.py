@@ -9,6 +9,8 @@ from search import searchTerms
 
 from openlibrary import bookUrls
 
+from syslog import syslog
+
 from archive import searchIA
 from urllib.parse import quote, unquote
 from json import dumps, loads
@@ -102,7 +104,7 @@ def ClassSearch(configfile=None):
         """ Get Resources """
         notRequired = False
         try:
-            params = loads(dict(request.args.items())["data"])
+            params = loads(unquote(dict(request.args.items())["data"]))
         except KeyError:
             return dumps("false")
         print(params)

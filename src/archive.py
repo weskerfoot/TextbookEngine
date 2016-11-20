@@ -18,7 +18,7 @@ def searchIA(title, author):
     except ValueError:
         return []
 
-    rownum = results["responseHeader"]["params"]["rows"]
+    rownum = int(results["responseHeader"]["params"]["rows"])
     if rownum < 1:
         print("Couldn't find results for %s %s" % (title, author))
         return []

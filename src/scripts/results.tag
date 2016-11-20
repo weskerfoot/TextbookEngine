@@ -2,6 +2,10 @@
       <div if={notLoading} class="courses container">
        <row class="course-row columns" each={ rows } data="{ this }" classrow={ row }></row>
       </div>
+<script>
+clicker() {
+  alert("clicked");
+}
 this.rows = [];
 var self = this;
 
@@ -19,4 +23,5 @@ results_passer.on("new_results",
     self.notLoading = true;
     self.update();
 });
+</script>
 </results>
