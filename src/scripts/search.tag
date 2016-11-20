@@ -1,26 +1,32 @@
 <search>
   <form class="form-horizontal search-form" onsubmit={ submit } type="submit"method="get">
+
     <div class="form-group">
+
         <div class="container">
           <div class="columns">
-            <div class="col-sm-8 form-item">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <input onfocus={ showhelp }
-                     class="form-input"
+                     class="form-input search"
                      placeholder="Description"
                      type="text"
-                     name="title"/>
-            </div>
-            <div class="col-sm-2 form-item">
-              <select class="form-select" aria-labelledby="dLabel" name="sem">
-                <option value="Fall">Fall</option>
-                <option value="Winter" selected>Winter</option>
-                <option value="Spring/Summer">Spring/Summer</option>
-              </select>
-            </div>
-            <div class="col-sm-2 form-item">
-              <button class="btn btn-primary" type="submit">Search</button>
+                     name="title">
+              </input>
             </div>
           </div>
+
+            <div class="columns">
+              <div class="col-sm-6 col-md-6 col-lg-6">
+                <select class="semester form-select pull-right" aria-labelledby="dLabel" name="sem">
+                  <option value="Fall">Fall</option>
+                  <option value="Winter" selected>Winter</option>
+                  <option value="Spring/Summer">Spring/Summer</option>
+                </select>
+              </div>
+              <div class="col-sm-6 col-md-6 col-lg-6">
+                <button class="search-btn btn btn-primary pull-left" type="submit">Search</button>
+              </div>
+            </div>
         </div>
     </div>
   </form>
