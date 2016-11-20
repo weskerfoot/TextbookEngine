@@ -4,6 +4,9 @@
            data="{ this }">
     </class>
 
+<script>
 this.classrow = opts.classrow
+</script>
+
 </row>
 

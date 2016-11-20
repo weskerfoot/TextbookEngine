@@ -1,10 +1,10 @@
 <search>
-  <form class="form-horizontal search-form" onsubmit={ submit.bind(this) } type="submit"method="get">
+  <form class="form-horizontal search-form" onsubmit={ submit } type="submit"method="get">
     <div class="form-group">
         <div class="container">
           <div class="columns">
             <div class="col-sm-8 form-item">
-              <input onfocus={ showHelp }
+              <input onfocus={ showhelp }
                      class="form-input"
                      placeholder="Description"
                      type="text"
@@ -27,7 +27,7 @@
 
   <div if={ opts.showHelp }
        class="help-toast toast toast-primary">
-    <button onclick={ clearHelp }
+    <button onclick={ clearhelp }
             class="btn btn-clear float-right">
     </button>
     Type keywords of your course's name or the course code (e.g. PSYCH 2B03)
@@ -35,17 +35,17 @@
 
   <div if={ opts.booksLoading } class="search-load">
   </div>
-</search>
 
+<script>
 this.showedHelp = false;
 this.waiting = false;
 
-function showHelp() {
+showhelp() {
   if (!this.showedHelp) {
     this.opts.showHelp = true;
     this.update();
-    if (!waiting) {
-      waiting = true;
+    if (!this.waiting) {
+      this.waiting = true;
       window.setTimeout(
       (function() {
         this.waiting = false;
@@ -55,7 +55,7 @@ function showHelp() {
   }
 }
 
-function clearHelp() {
+clearhelp() {
   this.showedHelp = true;
   this.opts.showHelp = false;
   this.update();
@@ -66,7 +66,7 @@ function clearHelpTemp() {
   this.update();
 }
 
-function submit(ev) {
+submit(ev) {
     ev.preventDefault();
     this.showedHelp = true;
     this.opts.showHelp = false;
@@ -84,3 +84,6 @@ function submit(ev) {
             this.update();
     }).bind(this));
 }
+</script>
+
+</search>
