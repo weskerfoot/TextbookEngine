@@ -2,7 +2,7 @@
   <div class="text-clip toast">
     <p>
       <button onclick={getresources} class="btn btn-link">
-        { booktitle }
+        { booktitle } {bookauthor !== "Ccw" ? "by " + bookauthor : ""}
       </button>
       <dd>
         <div if={ loading } class="loading">
