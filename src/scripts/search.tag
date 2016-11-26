@@ -26,8 +26,8 @@
             <div class="columns">
               <div class="col-sm-6 col-md-6 col-lg-6">
                 <select class="semester form-select float-right" aria-labelledby="dLabel" name="sem">
-                  <option value="Fall">Fall</option>
-                  <option value="Winter" selected>Winter</option>
+                  <option value="Fall" selected>Fall</option>
+                  <option value="Winter">Winter</option>
                   <option value="Spring/Summer">Spring/Summer</option>
                 </select>
               </div>
