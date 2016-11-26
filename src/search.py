@@ -20,8 +20,8 @@ es = elasticsearch.Elasticsearch()
 
 def summarize(text):
     splitted = text.split(" ")
-    if len(splitted) > 4:
-        return " ".join(splitted[0:4]) + ".."
+    if len(splitted) > 6:
+        return " ".join(splitted[0:6]) + ".."
     return text
 
 def sectionToJSON(section):
@@ -204,7 +204,7 @@ def searchTerms(terms):
         if obj.books:
             secs["books"] = [
                              {
-                               "booktitle"  : summarize(book[0]),
+                               "booktitle"  : book[0],
                                "bookauthor" : book[1],
                                "bookprice"  : book[2]
                              }

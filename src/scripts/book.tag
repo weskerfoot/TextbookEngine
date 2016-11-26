@@ -9,14 +9,14 @@
         </div>
         <p if={ iarchive }>
           <a target="_blank" href="{ iarchive }">
-            <button class="centered btn btn-link">
+            <button class="centered btn">
               Internet Archive Result
             </button>
           </a>
         </p>
         <p if={ openlib }>
           <a target="_blank" href="{ openlib }">
-            <button class="centered btn btn-link">
+            <button class="centered btn">
               Open Library Result
             </button>
           </a>
