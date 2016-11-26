@@ -9,24 +9,8 @@ from operator import attrgetter
 import pygal
 import csv
 
-class Textbook(object):
-    def __init__(self, dept, code, title, author, price):
-        self.dept = dept
-        self.code = code
-        self.title = title
-        self.author = author
-        self.price = float(price)
-
-    def __repr__(self):
-        return "Dept = %s, Code = %s, %s by %s, costs $%s" % (self.dept,
-                                                              self.code,
-                                                              self.title,
-                                                              self.author,
-                                                              self.price)
-
-
 def courses():
-    with open("./books.csv", "r") as books:
+    with open("./mcmaster/courses.csv", "r") as books:
         booksreader = csv.reader(books)
         for row in booksreader:
             yield row

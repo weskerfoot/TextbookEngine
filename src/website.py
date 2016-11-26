@@ -142,7 +142,6 @@ def ClassSearch(configfile=None):
 
     app = Flask(__name__)
     app.register_blueprint(blueprint, url_prefix="/search")
-    Bootstrap(app)
     #app.config["scripts"] = "./scripts"
     #app.config["styles"] = "./styles"
     return app

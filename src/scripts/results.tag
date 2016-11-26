@@ -1,6 +1,9 @@
 <results>
       <div if={notLoading} class="courses container">
-       <row class="course-row columns" each={ rows } data="{ this }" classrow={ row }></row>
+       <row if={rows.length > 0} class="course-row columns" each={ rows } data="{ this }" classrow={ row }></row>
+       <div if={rows.length <= 0} class="empty">
+        No Results, Sorry!
+       </div>
       </div>
 <script>
 clicker() {
