@@ -2,21 +2,21 @@
   <div class="text-clip toast">
     <p>
       <button onclick={getresources} class="btn btn-link">
-        { booktitle }
+        { booktitle } {bookauthor !== "Ccw" ? "by " + bookauthor : ""}
       </button>
       <dd>
         <div if={ loading } class="loading">
         </div>
         <p if={ iarchive }>
           <a target="_blank" href="{ iarchive }">
-            <button class="centered btn btn-link">
+            <button class="centered btn">
               Internet Archive Result
             </button>
           </a>
         </p>
         <p if={ openlib }>
           <a target="_blank" href="{ openlib }">
-            <button class="centered btn btn-link">
+            <button class="centered btn">
               Open Library Result
             </button>
           </a>
@@ -27,6 +27,7 @@
       </dd>
     </p>
   </div>
+
 <script>
 this.iarchive = false;
 this.openlib = false;

@@ -34,4 +34,5 @@ showbooks() {
 
 this.update();
 </script>
+
 </class>
