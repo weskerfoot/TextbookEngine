@@ -214,7 +214,7 @@ def parseColumns(subject, html):
     classInfo = (list(getSectionInfo(table)) for table in
                   islice((table for table in parsed.xpath(".//table")
                     if table.xpath("@id") and
-                    search(r"ICField[0-9]+\$scroll", table.xpath("@id")[0])), 1, sys.maxint))
+                    search(r"ICField[0-9]+\$scroll", table.xpath("@id")[0])), 1, sys.maxsize))
 
     classNames = ((subject, span.text_content().strip()) for span in parsed.xpath(".//span")
                     if span.xpath("@id") and
@@ -245,7 +245,7 @@ class MosReq(object):
         self.codes_ = []
 
     def getlist(self, subject):
-        sys.stderr.write("Getting " + subject + "\n")
+        sys.stderr.write("Getting %s\n" % subject.decode("UTF-8"))
         first_req = requests.get(searchurl, cookies=self.cookies).content
         # for some reason Mosaic wants us to request it twice, ??????????????????
         self.statenum = getStateNum(first_req)
@@ -259,7 +259,7 @@ class MosReq(object):
             self.statenum = getStateNum(first_req)
         except IndexError:
             pass
-        if "Your search will return over" in first_req:
+        if b"Your search will return over" in first_req:
 
             return requests.post(searchurl,
                                  data=payload2.format(self.statenum, self.semester),
@@ -302,7 +302,8 @@ def request(codes, lists, semester):
         code = codes.get()
         try:
             lists.put(requester.classes(code))
-        except:
+        except exception:
+            print(exception)
             codes.task_done()
             return
         codes.task_done()
@@ -342,6 +343,7 @@ class CourseInfo(object):
         for cl in chain.from_iterable(sections):
             new_sections = []
             for sec in cl[1]:
+                print(sec)
                 if len(sec.day) > 1:
                     for day in sec.day:
                         new_sections.append(copy.deepcopy(sec))
