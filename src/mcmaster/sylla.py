@@ -1,7 +1,7 @@
-#! /usr/bin/python3
+#! /usr/bin/python2
 
 from sys import argv
-from itertools import chain, islice, zip_longest
+from itertools import chain, islice, izip_longest, izip as zip
 from re import search, sub
 from functools import total_ordering
 from re import sub
@@ -34,7 +34,7 @@ class Book(object):
 def grouper(n, iterable, fillvalue=None):
     "grouper(3, 'ABCDEFG', 'x') --> ABC DEF Gxx"
     args = [iter(iterable)] * n
-    return zip_longest(fillvalue=fillvalue, *args)
+    return izip_longest(fillvalue=fillvalue, *args)
 
 searchUrl = "https://campusstore.mcmaster.ca/cgi-mcm/ws/txsub.pl?wsDEPTG1=%s&wsDEPTDESC1=&wsCOURSEG1=%s&crit_cnt=1"
 
@@ -70,7 +70,7 @@ def books(dept, code, withPrices):
     pricelist = prices(parsed)
 
     for div in parsed.xpath(".//div"):
-        if ("id" in div.attrib and
+        if (div.attrib.has_key("id") and
             "prodDesc" in div.attrib["id"]):
 
             textbook = div.text_content()

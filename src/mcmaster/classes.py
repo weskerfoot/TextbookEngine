@@ -1,7 +1,7 @@
-#! /usr/bin/python3
+#! /usr/bin/python2
 
 from sys import argv
-from itertools import chain, islice
+from itertools import chain, islice, izip as zip
 from re import search, sub
 from functools import total_ordering
 
@@ -18,13 +18,8 @@ fall = "2169"
 spring_summer = "2175"
 winter = "2171"
 
-def parseSem(sem):
-    if sem == "TBA":
-        return "TBA"
-    return sem[0] + sem[2:4] + sem[6]
-
 # threading stuff
-import queue as q
+import Queue as q
 import threading as thd
 
 baseurl = "https://applicants.mcmaster.ca/psp/prepprd/EMPLOYEE/PSFT_LS/c/COMMUNITY_ACCESS.CLASS_SEARCH.GBL"
@@ -129,12 +124,10 @@ class Section(dict):
 
     @property
     def sem(self):
-        if parseSem(self._sem) == fall:
+        if self._sem == fall:
             return "Fall"
-        elif parseSem(self._sem) == winter:
+        elif self._sem == winter:
             return "Winter"
-        elif parseSem(self._sem) == "TBA":
-            return "TBA"
         else:
             return "Spring/Summer"
 
@@ -147,7 +140,7 @@ class Section(dict):
                 assert len(self._day) == 2
                 day = self._day
             else:
-                day = [day[n:n+2] for n in range(0, len(day)-1, 2)]
+                day = [day[n:n+2] for n in xrange(0, len(day)-1, 2)]
 
             self._date = (day, timeparse(start), timeparse(end))
 
@@ -238,7 +231,7 @@ class MosReq(object):
 
         # Let the server set some cookies before doing the searching
         cookies = {}
-        for key, val in s.cookies.items():
+        for key, val in s.cookies.iteritems():
             cookies[key] = val
         self.cookies = cookies
         self.statenum = False
@@ -293,7 +286,7 @@ class MosReq(object):
             self.codes_ = list(chain.from_iterable(
                                 map((lambda l:
                                     self.getCodes(chr(l))),
-                                    range(65, 91))))
+                                    xrange(65, 91))))
         return self.codes_
 
 def request(codes, lists, semester):
@@ -327,7 +320,7 @@ class CourseInfo(object):
         lists = q.Queue()
         threads = []
         thread = None
-        for i in range(self.threadcount):
+        for i in xrange(self.threadcount):
             thread = thd.Thread(group=None, target=request, args=(qcodes, lists, self.semester))
             threads.append(thread)
             thread.start()
@@ -361,5 +354,5 @@ def allCourses():
 
 if __name__ == "__main__":
     for course in allCourses():
-        sys.stdout.write("%s, %s, %s, %s\n" % (course.title, course.code, course.dept, course.books))
-        print(course.sections)
+        sys.stdout.write("%s, %s, %s, %s\n" % (course.title, course.code, course.dept, list(chain.from_iterable(course.books))))
+        print course.sections
