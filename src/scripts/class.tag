@@ -11,7 +11,7 @@
           </button>
           <div if={ this.booksshown }>
               <dl>
-                  <book each={ books } data="{ this }">
+                  <book each={ R.uniq(books) } data="{ this }">
                   </book>
               </dl>
           </div>
