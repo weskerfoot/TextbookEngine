@@ -1,6 +1,6 @@
 #! /usr/bin/python3
 from functools import reduce
-from operator import or_
+from operator import or_, and_
 from hashlib import sha1
 from sys import exit, stderr
 from json import loads
@@ -142,12 +142,6 @@ def filterSem(term):
                 "sections.sem" : [term]
                 })
 
-def join(x, y):
-    """
-    Join two queries
-    """
-    return x & y
-
 def filterSections(secs):
     """
     Get rid of tutorial sections
@@ -178,7 +172,7 @@ def search_courses(terms):
     # Reduce joins all of the queries into one query
     # It will search for the conjunction of all of them
     # So that means it cares about each query equally
-    q = reduce(join, qs)
+    q = reduce(and_, qs)
 
     s = (Search(using=es, index="oersearch")
         .query(q))[0:100] # only return up to 100 results for now
