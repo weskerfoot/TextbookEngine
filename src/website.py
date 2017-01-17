@@ -3,9 +3,8 @@ from functools import partial
 from urllib.parse import quote, unquote
 from json import loads
 
-from flask import Blueprint, abort, Flask, render_template, flash, request, send_from_directory, jsonify
+from flask import Blueprint, Flask, render_template, request, send_from_directory, jsonify
 from flask_bootstrap import Bootstrap
-from flask_appconfig import AppConfig
 from werkzeug.contrib.cache import MemcachedCache
 
 from search import search_courses
