@@ -161,7 +161,7 @@ def filterSections(secs):
         return filtered
     return False
 
-def searchTerms(terms):
+def search_courses(terms):
     """
     Run a search for courses
     """

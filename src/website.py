@@ -1,24 +1,18 @@
 #! /usr/bin/python3
 from functools import partial
+from urllib.parse import quote, unquote
+from json import loads
 
 from flask import Blueprint, abort, Flask, render_template, flash, request, send_from_directory, jsonify
 from flask_bootstrap import Bootstrap
 from flask_appconfig import AppConfig
-
-from search import searchTerms
-
-from openlibrary import bookUrls
-
-from syslog import syslog
-
-from archive import searchIA
-from urllib.parse import quote, unquote
-from json import loads
-
 from werkzeug.contrib.cache import MemcachedCache
-cache = MemcachedCache(['127.0.0.1:11211'])
 
-import os
+from search import search_courses
+from openlibrary import bookUrls
+from archive import searchIA
+
+cache = MemcachedCache(['127.0.0.1:11211'])
 
 def predict(fieldtype, term):
     print(fieldtype)
@@ -75,7 +69,7 @@ def ClassSearch(configfile=None):
         for key, val in params.items():
             if val in defaults:
                 del params[key]
-        return jsonify(searchTerms(params))
+        return jsonify(search_courses(params))
 
     @blueprint.route("/resources", methods=("GET", "POST"))
     def resources():
@@ -84,14 +78,14 @@ def ClassSearch(configfile=None):
         try:
             params = loads(unquote(dict(request.args.items())["data"]))
         except KeyError:
-            return jsonify("false")
+            return jsonify(False)
         print(params)
         author = params["author"]
         title = params["title"]
 
         if ("No Textbooks" in title or
             "No Adoption" in title):
-            return jsonify("false")
+            return jsonify(False)
 
         # Cache the result of the open library search
         openlib = cacheit("openlib"+title+author, lambda : bookUrls(title, author))
@@ -103,7 +97,7 @@ def ClassSearch(configfile=None):
 
         if not (any(openlib) or any(iarchive)):
             # We literally could not find ANYTHING
-            return jsonify("false")
+            return jsonify(False)
 
         return jsonify({
                        "iarchive" : iarchive,
