@@ -1,7 +1,7 @@
 #! /usr/bin/python3
 from functools import partial
 
-from flask import Blueprint, abort, Flask, render_template, flash, request, send_from_directory
+from flask import Blueprint, abort, Flask, render_template, flash, request, send_from_directory, jsonify
 from flask_bootstrap import Bootstrap
 from flask_appconfig import AppConfig
 
@@ -13,7 +13,7 @@ from syslog import syslog
 
 from archive import searchIA
 from urllib.parse import quote, unquote
-from json import dumps, loads
+from json import loads
 
 from werkzeug.contrib.cache import MemcachedCache
 cache = MemcachedCache(['127.0.0.1:11211'])
@@ -24,15 +24,15 @@ def predict(fieldtype, term):
     print(fieldtype)
     print(term)
     if not term:
-        return "[]"
+        return jsonify([])
     else:
         try:
             cs = completers[fieldtype](term.lower())
         except KeyError:
-            return "[]"
+            return jsonify([])
     if cs:
         return cs
-    return "[]"
+    return jsonify([])
 
 def predictor(fieldtype):
     def inner(request):
@@ -106,14 +106,14 @@ def ClassSearch(configfile=None):
         try:
             params = loads(unquote(dict(request.args.items())["data"]))
         except KeyError:
-            return dumps("false")
+            return jsonify("false")
         print(params)
         author = params["author"]
         title = params["title"]
 
         if ("No Textbooks" in title or
             "No Adoption" in title):
-            return dumps("false")
+            return jsonify("false")
 
         # Cache the result of the open library search
         openlib = cacheit("openlib"+title+author, lambda : bookUrls(title, author))
@@ -125,9 +125,9 @@ def ClassSearch(configfile=None):
 
         if not (any(openlib) or any(iarchive)):
             # We literally could not find ANYTHING
-            return dumps("false")
+            return jsonify("false")
 
-        return dumps({
+        return jsonify({
                        "iarchive" : iarchive,
                        "openlib" : openlib
                      })
