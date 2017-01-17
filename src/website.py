@@ -63,27 +63,6 @@ def ClassSearch(configfile=None):
         return send_from_directory("/srv/http/goal/favicon.ico",
                                    'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
-
-    @blueprint.route("/buildpred", methods=("GET", "POST"))
-    def buildpred():
-        return predictbuild(request)
-
-    @blueprint.route("/locpred", methods=("GET", "POST"))
-    def locpred():
-        return predictloc(request)
-
-    @blueprint.route("/daypred", methods=("GET", "POST"))
-    def daypred():
-        return predictday(request)
-
-    @blueprint.route("/deptpred", methods=("GET", "POST"))
-    def deptpred():
-        return predictdept(request)
-
-    @blueprint.route("/titlepred", methods=("GET", "POST"))
-    def titlepred():
-        return predicttitle(request)
-
     @blueprint.route("/", methods=("GET", "POST"))
     def index():
         return render_template("search.html")
@@ -96,8 +75,7 @@ def ClassSearch(configfile=None):
         for key, val in params.items():
             if val in defaults:
                 del params[key]
-        results = searchTerms(params)
-        return results
+        return jsonify(searchTerms(params))
 
     @blueprint.route("/resources", methods=("GET", "POST"))
     def resources():

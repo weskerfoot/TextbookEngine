@@ -5,7 +5,7 @@ import elasticsearch
 from elasticsearch_dsl import FacetedSearch, Search, Q
 from elasticsearch_dsl.aggs import Terms, DateHistogram
 from sys import exit, stderr
-from json import dumps, loads
+from json import loads
 from itertools import chain
 
 from hashlib import sha1
@@ -175,7 +175,7 @@ def searchTerms(terms):
 
     if not qs:
         # No queries = no results
-        return dumps([])
+        return []
 
     # Reduce joins all of the queries into one query
     # It will search for the conjunction of all of them
@@ -214,7 +214,7 @@ def searchTerms(terms):
             secs["books"] = ""
         results.append(secs)
 
-    return dumps(results)
+    return results
 
 
 searchers = {
