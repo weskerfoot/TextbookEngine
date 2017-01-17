@@ -1,19 +1,17 @@
 #! /usr/bin/python3
-
-import elasticsearch
-
-from elasticsearch_dsl import FacetedSearch, Search, Q
-from elasticsearch_dsl.aggs import Terms, DateHistogram
+from functools import reduce
+from operator import or_
+from hashlib import sha1
 from sys import exit, stderr
 from json import loads
 from itertools import chain
-
-from hashlib import sha1
 from syslog import syslog
 
-from textbookExceptions import UnIndexable
+import elasticsearch
+from elasticsearch_dsl import FacetedSearch, Search, Q
+from elasticsearch_dsl.aggs import Terms, DateHistogram
 
-from functools import reduce
+from textbookExceptions import UnIndexable
 
 # Generic instance of elasticsearch right now
 es = elasticsearch.Elasticsearch()
