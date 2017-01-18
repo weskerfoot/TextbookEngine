@@ -38,15 +38,6 @@ def classToJSON(clss):
             "books"    : list(clss.books) if clss.books else []
             }
 
-
-def truncate(docid):
-    """
-    Truncate a document id to 12 digits
-    The document ID should be based on a
-    hash of unique identifiers
-    """
-    return int(str(docid)[0:12])
-
 def hashsec(course):
     """
     Hash a course into a usable id
@@ -187,9 +178,6 @@ def search_courses(terms):
                ]
     results = []
     for obj, secs in filtered:
-        # Add the truncated course id
-        # This is used to point to the resource page for that course
-        secs["id"] = truncate(obj.meta.id)
         secs["title"] = obj.title
         if obj["dept"] not in secs["title"]:
             secs["dept"] = obj.dept
