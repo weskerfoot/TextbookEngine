@@ -119,5 +119,5 @@ def ClassSearch(configfile=None):
 
 app = ClassSearch("./appconfig")
 
-#if __name__ == "__main__":
-    #ClassSearch("./appconfig").run(host="localhost", port=8001, debug=True)
+if __name__ == "__main__":
+    ClassSearch("./appconfig").run(host="localhost", port=8001, debug=True)

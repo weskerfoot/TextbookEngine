@@ -20,5 +20,4 @@ class UnIndexable(Exception):
         %s
         There could be several reasons why, my best guess is that %s
         We need at least the course code, title, and one or more sections to index
-
         """ % (course, message)
