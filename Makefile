@@ -25,4 +25,5 @@ install:
 	cp -rT ./build /srv/http/build/;
 	cp -rT ./build/scripts/ /srv/http/goal/scripts/;
 	cp -rT ./build/styles/ /srv/http/goal/styles/;
+	cp -rT ./venv /srv/http/build/venv;
 	cp search.ini /srv/http/build/;
