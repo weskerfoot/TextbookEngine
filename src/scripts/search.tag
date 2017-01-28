@@ -43,34 +43,6 @@
 
 <script>
 var self = this;
-this.showedHelp = false;
-this.waiting = false;
-
-showhelp() {
-  if (!this.showedHelp) {
-    this.opts.showHelp = true;
-    this.update();
-    if (!this.waiting) {
-      this.waiting = true;
-      window.setTimeout(
-      (function() {
-        this.waiting = false;
-        clearHelpTemp.bind(this)();
-      }).bind(this), 10000);
-    }
-  }
-}
-
-clearhelp() {
-  this.showedHelp = true;
-  this.opts.showHelp = false;
-  this.update();
-}
-
-function clearHelpTemp() {
-  this.opts.showHelp = false;
-  this.update();
-}
 
 submit(ev) {
     ev.preventDefault();
