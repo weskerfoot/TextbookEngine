@@ -51,7 +51,7 @@ submit(ev) {
     console.log("submitted");
     this.opts.booksLoading = true;
     this.update();
-    results_passer.trigger("loading");
+    resultsEv.trigger("loading");
     console.log(ev);
     fetch("/search/fc?title="+this.title.value+"&sem="+this.sem.value).then(
       function(response) {
@@ -60,7 +60,7 @@ submit(ev) {
             function(courses) {
               var fcourses = filterCourses(courses);
               var cgroups = groupsof(3, fcourses);
-              results_passer.trigger("new_results", cgroups);
+              resultsEv.trigger("newResults", cgroups);
               self.opts.booksLoading = false;
               self.update();
           });

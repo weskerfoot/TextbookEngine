@@ -1,9 +1,4 @@
-function ResultsPasser() {
-    riot.observable(this);
-    return this;
-}
-
-var results_passer = new ResultsPasser();
+var resultsEv = riot.observable();
 
 riot.mount("search", {
                       showHelp : false,
