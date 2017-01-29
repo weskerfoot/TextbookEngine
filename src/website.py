@@ -74,9 +74,8 @@ def ClassSearch(configfile=None):
     def resources():
         """ Get Resources """
         notRequired = False
-        try:
-            params = loads(unquote(dict(request.args.items())["data"]))
-        except KeyError:
+        params = request.json
+        if params is None:
             return jsonify(False)
         print(params)
         author = params["author"]

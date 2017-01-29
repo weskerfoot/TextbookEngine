@@ -45,24 +45,31 @@ getresources(ev) {
   };
   var url = "/search/resources";
 
-  $.getJSON(url, {
-    data : encodeURIComponent(JSON.stringify(params))
-  }).done(function(results) {
+  fetch(url, {
+    method : "POST",
+    body : JSON.stringify(params),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(
+  function(response) {
+    if (response.ok) {
+      return response.json()
+    }
+  }).then(
+  function(results) {
     if (results.iarchive) {
       self.iarchive = results.iarchive[0];
     }
-
     if (results.openlib) {
       self.openlib = results.openlib[0];
     }
-
     if (!(results.openlib && results.iarchive)) {
       self.noresources = true;
     }
-
     self.loading = false;
     self.update();
-  });
+  })
 }
 
 
