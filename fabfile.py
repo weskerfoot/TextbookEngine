@@ -8,7 +8,6 @@ env.hosts = ["wes@mgoal.ca:444"]
 
 @task
 def makeBuild():
-    local("rm -fr ./build")
     local("mkdir -p build/{scripts,styles,templates}")
 
 @task
@@ -92,5 +91,5 @@ def buildLocal():
     buildTags()
     uglify()
     sass()
-    buildLocalVenv()
+    #buildLocalVenv()
     serveUpLocal()
