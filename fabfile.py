@@ -46,6 +46,15 @@ def serveUp():
     sudo("systemctl restart search.service")
 
 @task
+def serveUpLocal():
+    local("sudo rm -fr /srv/http/build")
+    local("sudo cp -r /home/wes/TextbookEngine/build/ /srv/http/build")
+    local("sudo cp /home/wes/TextbookEngine/build/search.service /etc/systemd/system/search.service")
+    local("sudo systemctl daemon-reload")
+    local("sudo systemctl enable search.service")
+    local("sudo systemctl restart search.service")
+
+@task
 def buildVenv():
     with cd("~/tbookbuild"):
         run("virtualenv -p $(which python3) ~/tbookbuild/venv")
@@ -69,3 +78,13 @@ def build():
     upload()
     buildVenv()
     serveUp()
+
+@task
+def buildLocal():
+    makeBuild()
+    buildTags()
+    uglify()
+    sass()
+    copy()
+    buildLocalVenv()
+    serveUpLocal()
