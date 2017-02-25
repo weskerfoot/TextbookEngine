@@ -51,7 +51,10 @@ def serveUp():
 @task
 def serveUpLocal():
     local("sudo rm -fr /srv/http/build")
+    local("sudo rm -fr /srv/http/goal/scripts/")
+    local("sudo mkdir -p /srv/http/goal/scripts")
     local("sudo cp -r /home/wes/TextbookEngine/build/ /srv/http/build")
+    local("sudo cp -r /home/wes/TextbookEngine/build/scripts/*js /srv/http/goal/scripts/")
     local("sudo cp /home/wes/TextbookEngine/build/search.service /etc/systemd/system/search.service")
     local("sudo systemctl daemon-reload")
     local("sudo systemctl enable search.service")
