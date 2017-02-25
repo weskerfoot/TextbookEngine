@@ -1,0 +1,24 @@
+{
+  "name": "textbookengine",
+  "version": "1.0.0",
+  "description": "Search for textbooks",
+  "main": "src/scripts/search.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build" : "rollup"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nisstyre56/TextbookEngine.git"
+  },
+  "author": "Wesley Kerfoot",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/nisstyre56/TextbookEngine/issues"
+  },
+  "homepage": "https://github.com/nisstyre56/TextbookEngine#readme",
+  "devDependencies": {
+    "rollup": "^0.41.4",
+    "rollup-plugin-riot": "^1.1.0"
+  }
+}
