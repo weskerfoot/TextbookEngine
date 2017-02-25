@@ -17,7 +17,7 @@ def buildTags():
 
 @task
 def uglify():
-    local("uglifyjs ./build/scripts/*js > ./build/scripts/search.min.js")
+    local("uglifyjs ./build/scripts/tags.js ./build/scripts/search.js > ./build/scripts/search.min.js")
 
 @task
 def sass():
@@ -39,7 +39,10 @@ def upload():
 @task
 def serveUp():
     sudo("rm -fr /srv/http/build")
+    sudo("rm -fr /srv/http/goal/scripts/")
+    sudo("mkdir -p /srv/http/goal/scripts")
     sudo("cp -r /home/wes/tbookbuild /srv/http/build")
+    sudo("cp -r /home/wes/tbookbuild/scripts/*js /srv/http/goal/scripts/")
     sudo("cp /home/wes/tbookbuild/search.service /etc/systemd/system/search.service")
     sudo("systemctl daemon-reload")
     sudo("systemctl enable search.service")
@@ -71,10 +74,10 @@ def buildLocalVenv():
 @task(default=True)
 def build():
     makeBuild()
+    copy()
     buildTags()
     uglify()
     sass()
-    copy()
     upload()
     buildVenv()
     serveUp()
@@ -82,9 +85,9 @@ def build():
 @task
 def buildLocal():
     makeBuild()
+    copy()
     buildTags()
     uglify()
     sass()
-    copy()
     buildLocalVenv()
     serveUpLocal()
