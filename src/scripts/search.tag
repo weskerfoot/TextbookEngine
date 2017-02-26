@@ -9,7 +9,7 @@
                      class="form-input search"
                      placeholder="Course Description"
                      type="text"
-                     name="title">
+                     ref="title">
               </input>
             </div>
 
@@ -17,7 +17,7 @@
 
           <div class="columns">
             <div class="col-sm-6 col-md-6 col-lg-6">
-              <select class="semester form-select float-right" aria-labelledby="dLabel" name="sem">
+              <select class="semester form-select float-right" aria-labelledby="dLabel" ref="sem">
                 <option value="Fall" selected>Fall</option>
                 <option value="Winter">Winter</option>
                 <option value="Spring/Summer">Spring/Summer</option>
@@ -42,25 +42,24 @@
   </div>
 
 <script>
+import {filterCourses, groupsof} from './helpers.js';
+import 'whatwg-fetch'
 var self = this;
 
 submit(ev) {
     ev.preventDefault();
-    this.showedHelp = true;
-    this.opts.showHelp = false;
-    console.log("submitted");
-    this.opts.booksLoading = true;
-    this.update();
-    resultsEv.trigger("loading");
+    self.opts.booksLoading = true;
+    self.update();
+    self.opts.resultsEv.trigger("loading");
     console.log(ev);
-    fetch("/search/fc?title="+this.title.value+"&sem="+this.sem.value).then(
+    fetch("/search/fc?title="+self.refs.title.value+"&sem="+self.refs.sem.value).then(
       function(response) {
         if (response.ok) {
           response.json().then(
             function(courses) {
               var fcourses = filterCourses(courses);
               var cgroups = groupsof(3, fcourses);
-              resultsEv.trigger("newResults", cgroups);
+              self.opts.resultsEv.trigger("newResults", cgroups);
               self.opts.booksLoading = false;
               self.update();
           });

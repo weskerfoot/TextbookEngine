@@ -29,6 +29,7 @@
   </div>
 
 <script>
+import 'whatwg-fetch'
 this.iarchive = false;
 this.openlib = false;
 this.noresources = false;

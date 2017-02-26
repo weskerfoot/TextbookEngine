@@ -11,7 +11,7 @@
           </button>
           <div if={ this.booksshown }>
               <dl>
-                  <book each={ R.uniq(books) } data="{ this }">
+                  <book each={ this.uniq(books) } data="{ this }">
                   </book>
               </dl>
           </div>
@@ -23,16 +23,15 @@
     </div>
 
 <script>
-booksshown = false;
-
-var self = this;
+import { default as R } from 'ramda';
+this.uniq = R.uniq;
+this.booksshown = false;
 
 showbooks() {
-  self.booksshown = !self.booksshown;
-  self.update();
+  this.booksshown = !this.booksshown;
+  this.update();
 }
 
-this.update();
 </script>
 
 </class>

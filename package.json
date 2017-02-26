@@ -5,7 +5,7 @@
   "main": "src/scripts/search.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build" : "rollup"
+    "build": "rollup src/scripts/search.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,15 @@
   },
   "homepage": "https://github.com/nisstyre56/TextbookEngine#readme",
   "devDependencies": {
+    "ramda": "^0.23.0",
+    "riot": "^3.3.1",
     "rollup": "^0.41.4",
-    "rollup-plugin-riot": "^1.1.0"
+    "rollup-plugin-commonjs": "^7.0.0",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-riot": "^1.1.0",
+    "whatwg-fetch": "^2.0.2"
+  },
+  "dependencies": {
+    "whatwg-fetch": "^2.0.2"
   }
 }

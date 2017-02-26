@@ -6,6 +6,11 @@ import fabric.operations as op
 
 env.hosts = ["wes@mgoal.ca:444"]
 
+
+@task
+def installDeps():
+    local("npm install --save-dev rollup rollup-plugin-riot")
+
 @task
 def makeBuild():
     local("mkdir -p build/{scripts,styles,templates}")
@@ -16,7 +21,8 @@ def buildTags():
 
 @task
 def uglify():
-    local("uglifyjs ./build/scripts/tags.js ./build/scripts/search.js > ./build/scripts/search.min.js")
+    local("rollup -c rollup.config.js")
+    local("uglifyjs ./build/bundle.js > ./build/scripts/search.min.js")
 
 @task
 def sass():

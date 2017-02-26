@@ -12,13 +12,13 @@ clicker() {
 this.rows = [];
 var self = this;
 
-resultsEv.on("loading",
+this.opts.resultsEv.on("loading",
   function() {
     self.notLoading = false;
     self.update();
   });
 
-resultsEv.on("newResults",
+this.opts.resultsEv.on("newResults",
   function(data) {
     console.log("new search results detected");
     console.log(data);
