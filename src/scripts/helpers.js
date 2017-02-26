@@ -17,11 +17,7 @@ function filterCourses(courses) {
       courses[i].books = "";
     }
   }
-
-  return R.filter(
-    function (c) {
-      return c.prof != "Staff";
-    }, courses);
+  return R.filter((c) => { return c.prof != "Staff"}, courses);
 }
 
 function groupsof(n, xs) {

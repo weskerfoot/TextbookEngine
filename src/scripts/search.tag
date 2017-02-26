@@ -43,7 +43,7 @@
 
 <script>
 import {filterCourses, groupsof} from './helpers.js';
-import 'whatwg-fetch'
+import 'whatwg-fetch';
 var self = this;
 
 submit(ev) {
