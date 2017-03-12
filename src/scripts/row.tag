@@ -1,5 +1,5 @@
 <row>
-    <class class="course text-ellipsis text-justify rounded card column col-md-4"
+    <class class="course text-justify rounded card column col-xs-12 col-sm-12 col-md-6 col-lg-4"
            each="{ classrow }"
            data="{ this }">
     </class>

@@ -68,125 +68,31 @@ a {
   margin-right: 10px !important;
 }
 
-.course-row {
-  margin-right: 50px !important;
-}
+.course-row {}
 
-.search-form {
-  margin-top: 6%;
-  -webkit-appearance: none !important;
-}
+.search-form {}
 
 .book-title {
   margin-right: 0px !important;
 }
 
 .search {
-  max-width: 60%;
   margin-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  @media (max-width: 735px) {
-    max-width: 80%;
-  }
-  @media (max-width: 480px) {
-    max-width: 100%;
-    margin-bottom: 10px;
-  }
 }
 
-.semester {
-  margin-bottom: 10px;
-  margin-right: 5px;
-  @media (max-width: 480px) {
-    max-width: 100%;
-    margin-bottom: 10px;
-  }
-}
+.semester {}
 
 .search-btn {
-  margin-bottom: 10px;
-  margin-left: 5px;
-  @media (max-width: 480px) {
-    max-width: 100%;
-    margin-bottom: 10px;
-  }
+  margin: auto !important;
 }
 
-.search-controls {
-  margin-top: 5px;
-  margin-left: 20%;
-}
+.title {}
 
-.title {
-  font-weight: bolder;
-  float: right;
-  margin-right: 10%;
-}
+.header-text {}
 
-.header-text {
-  margin: auto;
-  max-width: 80%;
-}
+.logo {}
 
-.ui-autocomplete {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-    float: left;
-    display: none;
-    min-width: 160px;
-    padding: 4px 0;
-    margin: 0 0 10px 25px;
-    list-style: none;
-    background-color: #ffffff;
-    border-color: #ccc;
-    border-color: rgba(0, 0, 0, 0.2);
-    border-style: solid;
-    border-width: 1px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    -moz-background-clip: padding;
-    background-clip: padding-box;
-}
-
-.ui-menu-item > a.ui-corner-all {
-    display: block;
-    padding: 3px 15px;
-    clear: both;
-    font-weight: normal;
-    line-height: 18px;
-    color: #555555;
-    white-space: nowrap;
-    text-decoration: none;
-}
-
-.ui-state-hover, .ui-state-active {
-    color: #ffffff;
-    text-decoration: none;
-    background-color: #0088cc;
-    border-radius: 0px;
-    -webkit-border-radius: 0px;
-    background-image: none;
-}
-
-.logo {
-  float: left;
-  margin-left: -20%;
-  margin-top: 15px;
-  @media (max-width: 480px) {
-    margin-left: 45% !important;
-  }
-}
-
-.page-top {
-  font-size: 15px;
-  margin: auto;
-  width: 80% !important;
-}
+.page-top {}
 
 .help-toast {
   background-color: rgba(28,117,188, 0.7) !important;

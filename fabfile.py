@@ -6,7 +6,6 @@ import fabric.operations as op
 
 env.hosts = ["wes@mgoal.ca:444"]
 
-
 @task
 def installDeps():
     local("npm install --save-dev rollup rollup-plugin-riot")
@@ -46,8 +45,10 @@ def serveUp():
     sudo("rm -fr /srv/http/build")
     sudo("rm -fr /srv/http/goal/scripts/")
     sudo("mkdir -p /srv/http/goal/scripts")
+    sudo("mkdir -p /srv/http/goal/styles")
     sudo("cp -r /home/wes/tbookbuild /srv/http/build")
     sudo("cp -r /home/wes/tbookbuild/scripts/*js /srv/http/goal/scripts/")
+    sudo("cp -r /home/wes/tbookbuild/styles/*css /srv/http/goal/styles/")
     sudo("cp /home/wes/tbookbuild/search.service /etc/systemd/system/search.service")
     sudo("systemctl daemon-reload")
     sudo("systemctl enable search.service")
@@ -60,6 +61,7 @@ def serveUpLocal():
     local("sudo mkdir -p /srv/http/goal/scripts")
     local("sudo cp -r /home/wes/TextbookEngine/build/ /srv/http/build")
     local("sudo cp -r /home/wes/TextbookEngine/build/scripts/*js /srv/http/goal/scripts/")
+    local("sudo cp -r /home/wes/TextbookEngine/build/styles/*css /srv/http/goal/styles/")
     local("sudo cp /home/wes/TextbookEngine/build/search.service /etc/systemd/system/search.service")
     local("sudo systemctl daemon-reload")
     local("sudo systemctl enable search.service")
@@ -97,5 +99,5 @@ def buildLocal():
     buildTags()
     uglify()
     sass()
-    #buildLocalVenv()
+    buildLocalVenv()
     serveUpLocal()

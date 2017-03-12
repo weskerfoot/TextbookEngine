@@ -14,8 +14,6 @@ from archive import searchIA
 cache = MemcachedCache(['127.0.0.1:11211'])
 
 def predict(fieldtype, term):
-    print(fieldtype)
-    print(term)
     if not term:
         return jsonify([])
     else:
@@ -77,7 +75,6 @@ def ClassSearch(configfile=None):
         params = request.json
         if params is None:
             return jsonify(False)
-        print(params)
         author = params["author"]
         title = params["title"]
 
@@ -87,11 +84,9 @@ def ClassSearch(configfile=None):
 
         # Cache the result of the open library search
         openlib = cacheit("openlib"+title+author, lambda : bookUrls(title, author))
-        print(openlib)
 
         # cache the result of an internet archive search
         iarchive = cacheit("iarchive"+title+author, lambda : searchIA(title, author))
-        print(iarchive)
 
         if not (any(openlib) or any(iarchive)):
             # We literally could not find ANYTHING

@@ -1,24 +1,20 @@
 <book>
-  <div class="text-clip toast">
+  <li class="menu-item text-ellipsis">
     <p>
-      <button onclick={getresources} class="btn btn-link">
-        { booktitle } {bookauthor !== "Ccw" ? "by " + bookauthor : ""}
-      </button>
+      <a href="#" onclick={getresources} class="block">
+          { booktitle } {bookauthor !== "Ccw" ? "by " + bookauthor : ""}
+      </a>
       <dd>
         <div if={ loading } class="loading">
         </div>
         <p if={ iarchive }>
-          <a target="_blank" href="{ iarchive }">
-            <button class="centered btn">
-              Internet Archive Result
-            </button>
+          <a class="btn" target="_blank" href="{ iarchive }">
+            Internet Archive Result
           </a>
         </p>
         <p if={ openlib }>
-          <a target="_blank" href="{ openlib }">
-            <button class="centered btn">
-              Open Library Result
-            </button>
+          <a class="btn" target="_blank" href="{ openlib }">
+            Open Library Result
           </a>
         </p>
         <p if={ noresources } class="centered wraptext">
@@ -26,7 +22,7 @@
         </p>
       </dd>
     </p>
-  </div>
+  </li>
 
 <script>
 import 'whatwg-fetch'

@@ -3,8 +3,7 @@
     <div class="form-group">
       <div class="container">
           <div class="columns">
-
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="column col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <input onfocus={ showhelp }
                      class="form-input search"
                      placeholder="Course Description"
@@ -16,22 +15,18 @@
           </div>
 
           <div class="columns">
-            <div class="col-sm-6 col-md-6 col-lg-6">
-              <select class="semester form-select float-right" aria-labelledby="dLabel" ref="sem">
-                <option value="Fall" selected>Fall</option>
-                <option value="Winter">Winter</option>
-                <option value="Spring/Summer">Spring/Summer</option>
-              </select>
-            </div>
-            <div class="col-sm-6 col-md-6 col-lg-6">
-
+            <div class="column col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <button
-                class="search-btn btn btn-primary float-left tooltip tooltip-bottom"
+                class="inline-block search-btn btn btn-primary tooltip tooltip-bottom"
                 data-tooltip="Search by keywords"
                 type="submit">
                   Search
               </button>
-
+              <select class="inline-block semester form-select" aria-labelledby="dLabel" ref="sem">
+                <option value="Fall" selected>Fall</option>
+                <option value="Winter">Winter</option>
+                <option value="Spring/Summer">Spring/Summer</option>
+              </select>
             </div>
           </div>
       </div>

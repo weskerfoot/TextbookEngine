@@ -7,10 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup src/scripts/search.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nisstyre56/TextbookEngine.git"
-  },
+  "repository": "git+https://github.com/nisstyre56/TextbookEngine.git",
   "author": "Wesley Kerfoot",
   "license": "AGPL-3.0",
   "bugs": {
@@ -27,6 +24,7 @@
     "whatwg-fetch": "^2.0.2"
   },
   "dependencies": {
+    "spectre.css": "^0.2.9",
     "whatwg-fetch": "^2.0.2"
   }
 }

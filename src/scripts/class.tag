@@ -6,14 +6,14 @@
         <div class="wraptext" id='sem'>Running: { sem } </div>
       </div>
       <div if={ books } class="card-body">
-          <button onclick={showbooks} class="btn btn-primary show-button">
-              <strong>Show Textbooks</strong>
-          </button>
-          <div if={ this.booksshown }>
-              <dl>
-                  <book each={ this.R.uniq(books) } data="{ this }">
-                  </book>
-              </dl>
+          <div class="dropdown">
+            <button onclick={showbooks} class="btn btn-link dropdown-toggle" tabindex="0">
+              Books <i class="icon-caret"></i>
+            </button>
+            <ul class="menu" if={ this.booksshown }>
+              <book each={ this.R.uniq(books) } data="{ this }">
+              </book>
+            </ul>
           </div>
       </div>
       <div class="toast" if={ !books }>
