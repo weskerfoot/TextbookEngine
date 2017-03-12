@@ -3,7 +3,7 @@
     <div class="form-group">
       <div class="container">
           <div class="columns">
-            <div class="column col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="search column col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <input onfocus={ showhelp }
                      class="form-input search"
                      placeholder="Course Description"

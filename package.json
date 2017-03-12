@@ -24,6 +24,7 @@
     "whatwg-fetch": "^2.0.2"
   },
   "dependencies": {
+    "rollup-plugin-buble": "^0.15.0",
     "spectre.css": "^0.2.9",
     "whatwg-fetch": "^2.0.2"
   }
