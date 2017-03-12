@@ -1,16 +1,21 @@
 <class>
     <div class="course-info">
       <div class="card-header">
-        <div class="text-center wraptext" id='title'> { dept } { title } </div>
-        <div class="wraptext" id='prof'>Taught by: { prof } </div>
-        <div class="wraptext" id='sem'>Running: { sem } </div>
+        <h4 class="course-title card-title text-center wraptext" id='title'> { dept } { title } </h4>
+        <h6 class="course-prof wraptext" id='prof'>Taught by: { prof } </h6>
+        <h6 class="course-sem wraptext" id='sem'>Running: { sem } </h6>
       </div>
       <div if={ books } class="card-body">
           <div class="dropdown">
             <button onclick={showbooks} class="btn btn-link dropdown-toggle" tabindex="0">
-              Books <i class="icon-caret"></i>
+              Find Books <i class="icon-caret"></i>
             </button>
             <ul class="menu" if={ this.booksshown }>
+              <li class="menu-header">
+                <span class="menu-header-text">
+                  Potential finds
+                </span>
+              </li>
               <book each={ this.R.uniq(books) } data="{ this }">
               </book>
             </ul>

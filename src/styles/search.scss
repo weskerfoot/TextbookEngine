@@ -114,6 +114,19 @@ a {
   border: none !important;
 }
 
+.course-title {
+  color: darken($blue, 10%) !important;
+  font-weight: 500;
+}
+
+.course-prof {
+  color: darken($blue, 10%) !important;
+}
+
+.course-sem {
+  color: darken($blue, 10%) !important;
+}
+
 .course-info {
   border: solid;
   border-width: 2px;
