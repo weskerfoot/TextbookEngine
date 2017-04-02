@@ -13,24 +13,6 @@ from archive import searchIA
 
 cache = MemcachedCache(['127.0.0.1:11211'])
 
-def predict(fieldtype, term):
-    if not term:
-        return jsonify([])
-    else:
-        try:
-            cs = completers[fieldtype](term.lower())
-        except KeyError:
-            return jsonify([])
-    if cs:
-        return cs
-    return jsonify([])
-
-def predictor(fieldtype):
-    def inner(request):
-        params = dict(request.args.items())
-        return predict(fieldtype, params["term"])
-    return inner
-
 def cacheit(key, thunk):
     """
     Tries to find a cached version of ``key''
