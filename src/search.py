@@ -22,22 +22,6 @@ def summarize(text):
         return " ".join(splitted[0:6]) + ".."
     return text
 
-def sectionToJSON(section):
-    return {
-            "prof" : section.prof,
-            "sem"  : section.sem,
-            "day"  : section.day
-            }
-
-def classToJSON(clss):
-    return {
-            "title"    : clss.title,
-            "sections" : map(sectionToJSON, clss.sections),
-            "dept"     : clss.dept,
-            "code"     : clss.code,
-            "books"    : list(clss.books) if clss.books else []
-            }
-
 def hashsec(course):
     """
     Hash a course into a usable id
@@ -60,48 +44,6 @@ def hashsec(course):
     h = sha1()
     h.update(code + title + course["sections"][0]["sem"])
     return int(h.hexdigest(), 16)
-
-def createIndex(name):
-    """
-    This creates a new index in elasticsearch
-    An index is like a schema in a regular database
-    """
-    indices = elasticsearch.client.IndicesClient(es)
-
-    print(indices.create(name))
-    with open("../course.json", "r") as mapping:
-        print(indices.put_mapping("course", loads(mapping.read()), name))
-
-def indexListing(course):
-    """
-    Index a specific course in the database (using the courses index)
-    example,
-    {
-     'books': [],
-     'dept': 'COLLAB',
-     'code': '2C03',
-     'sections': [
-                    {
-                     'prof': 'Lisa Pender',
-                     'sem': '2015/09/08 - 2015/12/08',
-                     'day': 'Mo'
-                     },
-                     {
-                      'prof': 'Staff',
-                      'sem': '2015/09/08 - 2015/12/08',
-                      'day': 'Th'
-                      }
-                  ],
-     'title': 'COLLAB 2C03 - Sociology I'
-     }
-
-    """
-    json_course = classToJSON(course)
-    courseID = hashsec(json_course)
-    print(es.index(index="oersearch",
-            doc_type="course",
-            id=courseID,
-            body=json_course))
 
 def termSearch(field):
     """
@@ -195,7 +137,6 @@ def search_courses(terms):
         results.append(secs)
 
     return results
-
 
 searchers = {
     "title" : search("title"),
