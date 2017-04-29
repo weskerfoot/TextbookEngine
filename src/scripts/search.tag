@@ -1,5 +1,5 @@
 <search>
-  <form class="form-horizontal search-form" onsubmit={ submit } type="submit" method="get">
+  <form class="form-horizontal search-form" onsubmit={ submit } method="get">
     <div class="form-group">
       <div class="container">
           <div class="columns">

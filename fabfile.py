@@ -29,6 +29,7 @@ def sass():
 
 @task
 def copy():
+    local("cp ./goal.png ./build/goal.png")
     local("cp -r ./src/scripts/*.js ./build/scripts/")
     local("cp -r ./src/styles/*.css ./build/styles/")
     local("cp -r ./src/templates/*html ./build/templates/")
