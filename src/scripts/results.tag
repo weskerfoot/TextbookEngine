@@ -1,10 +1,17 @@
 <results>
       <div if={notLoading} class="courses container">
-       <row if={rows.length > 0} class="course-row columns" each={ rows } data="{ this }" classrow={ row }></row>
-       <div if={rows.length <= 0} class="empty">
+       <row if={rows.length > 0}
+            class="course-row columns"
+            each={ rows }
+            data="{ this }"
+            classrow={ row }>
+      </row>
+      <div if={rows.length <= 0}
+           class="empty"
+      >
         No Results, Sorry!
-       </div>
       </div>
+    </div>
 <script>
 clicker() {
   alert("clicked");
