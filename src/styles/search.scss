@@ -98,7 +98,15 @@ a {
 
 .header-text {}
 
-.logo {}
+.logo {
+  margin-bottom: 25px;
+  border-style: none !important;
+  border-radius: 0% !important;
+}
+
+.avatar-icon {
+  @extend .logo;
+}
 
 .page-top {}
 
