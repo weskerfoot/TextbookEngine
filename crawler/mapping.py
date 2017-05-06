@@ -1,5 +1,6 @@
 #! /usr/bin/env python2
 
+from hashlib import sha256
 from elasticsearch_dsl import DocType, Date, Nested, Boolean, \
     analyzer, InnerObjectWrapper, Completion, Keyword, Text, Object
 
@@ -67,7 +68,15 @@ def indexCourse(course):
                         title=course.title,
                         dept=course.dept,
                         code=course.code)
-    new_course.save()
+
+    if course.title and course.dept and course.code:
+        _id = course.title+course.dept+course.code
+    elif course.title and course.dept:
+        _id = course.title+course.dept
+    else:
+        _id = course.title
+
+    new_course.save(id=sha256(_id).hexdigest())
 
 
 #if __name__ == "__main__":
