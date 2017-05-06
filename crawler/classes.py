@@ -1,11 +1,12 @@
-#! /usr/bin/python2
+#! /usr/bin/env python2
 
+from mapping import indexCourse
 from sys import argv
 from itertools import chain, islice
 from re import search, sub
 from functools import total_ordering
 
-from sylla2 import textbookInfo
+from sylla import textbookInfo
 from collections import MutableMapping
 
 import datetime as dt
@@ -110,7 +111,6 @@ class Class(object):
     @property
     def books(self):
         if self.dept and self.code:
-            print "tryna get some textbooks man"
             return textbookInfo(self.dept, self.code, withPrices=True)
         return False
 
@@ -204,7 +204,6 @@ def getSectionInfo(table):
             yield parseSection(tr)
 
 def parseColumns(subject, html):
-    print type(html)
     parsed = lxh.fromstring(html)
 
     classInfo = (list(getSectionInfo(table)) for table in
@@ -288,9 +287,11 @@ class MosReq(object):
     def codes(self):
         if not self.codes_:
             self.codes_ = list(chain.from_iterable(
-                                list(map((lambda l:
-                                    self.getCodes(chr(l))),
-                                    range(65, 91)))))
+                                list(
+                                    map(
+                                        (lambda l:
+                                            self.getCodes(chr(l))),
+                                        range(65, 91)))))
         return self.codes_
 
 def request(codes, lists, semester):
@@ -299,8 +300,6 @@ def request(codes, lists, semester):
         code = codes.get()
         lists.put(requester.classes(code))
         codes.task_done()
-        print "WHUT"
-    print "DONE"
 
 class CourseInfo(object):
     def __init__(self, threadcount, semester):
@@ -328,10 +327,7 @@ class CourseInfo(object):
             thread.start()
         qcodes.join()
         for t in threads:
-            print t
             t.join()
-
-        print "finished getting courses"
 
         sections = []
         while not lists.empty():
@@ -349,14 +345,15 @@ class CourseInfo(object):
                     new_sections.append(sec)
             yield Class(cl[0][0], sub("\xa0+", "", cl[0][1]), sorted(new_sections))
 
-def getCourses(semester, threadcount=10):
+def getCourses(semester, threadcount=5):
     return CourseInfo(threadcount, semester).classes()
 
 def allCourses():
     return chain.from_iterable(
-     (getCourses(sem, threadcount=25)
-        for sem in (fall, winter, spring_summer)))
+     (getCourses(sem, threadcount=5)
+        for sem in [spring_summer, fall, winter]))
 
 if __name__ == "__main__":
     for course in allCourses():
-        sys.stdout.write("%s, %s, %s, %s\n" % (course.title, course.code, course.dept, list(chain.from_iterable(course.books) if course.books else [])))
+        indexCourse(course)
+        #sys.stdout.write("%s, %s, %s, %s\n" % (course.title, course.code, course.dept, list(chain.from_iterable(course.books) if course.books else [])))

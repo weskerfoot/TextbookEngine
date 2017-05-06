@@ -1,4 +1,4 @@
-#! /usr/bin/python3
+#! /usr/bin/python2
 
 from classes import fallCourses
 import csv
