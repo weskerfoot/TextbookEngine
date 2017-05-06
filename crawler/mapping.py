@@ -70,11 +70,11 @@ def indexCourse(course):
                         code=course.code)
 
     if course.title and course.dept and course.code:
-        _id = course.title+course.dept+course.code
+        _id = course.title+course.dept+course.code+course.sections[0].sem
     elif course.title and course.dept:
-        _id = course.title+course.dept
+        _id = course.title+course.dept+course.sections[0].sem
     else:
-        _id = course.title
+        _id = course.title+course.sections[0].sem
 
     new_course.save(id=sha256(_id).hexdigest())
 
