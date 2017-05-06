@@ -61,8 +61,9 @@ def toBook(book):
 
 def indexCourse(course):
     print "Trying to index course %s" % course
+    print course.books
     new_course = Course(sections=map(toSection, course.sections),
-                        books=map(toBook, course.books),
+                        books=map(toBook, course.books if course.books else []),
                         title=course.title,
                         dept=course.dept,
                         code=course.code)
