@@ -22,41 +22,6 @@ def summarize(text):
         return " ".join(splitted[0:6]) + ".."
     return text
 
-def hashsec(course):
-    """
-    Hash a course into a usable id
-    """
-    if not course["code"]:
-        code = ""
-    else:
-        code = course["code"]
-    if not course["title"]:
-        title = ""
-    else:
-        title = course["title"]
-
-    if not course["sections"] or len(course["sections"]) < 1:
-        course["sections"][0] = ""
-
-    if not (code or title):
-        raise UnIndexable(course)
-
-    h = sha1()
-    h.update(code + title + course["sections"][0]["sem"])
-    return int(h.hexdigest(), 16)
-
-def termSearch(field):
-    """
-    Make a term search (exact match)
-    """
-    def t(term):
-        q = Q("term",
-                **{
-                    "sections."+field : term
-                    })
-        return q
-    return t
-
 def search(field):
     """
     Make a match search
@@ -107,7 +72,7 @@ def search_courses(terms):
     # So that means it cares about each query equally
     q = reduce(and_, qs)
 
-    s = (Search(using=es, index="oersearch")
+    s = (Search(using=es, index="course_test")
         .query(q))[0:100] # only return up to 100 results for now
 
     results = s.execute()
@@ -123,12 +88,12 @@ def search_courses(terms):
         secs["title"] = obj.title
         if obj["dept"] not in secs["title"]:
             secs["dept"] = obj.dept
-        if obj.books:
+        if "books" in obj:
             secs["books"] = [
                              {
-                               "booktitle"  : book[0],
-                               "bookauthor" : book[1],
-                               "bookprice"  : book[2]
+                               "booktitle"  : book["title"],
+                               "bookauthor" : book["author"],
+                               "bookprice"  : book["price"]
                              }
                                 for book in obj.books
                             ]

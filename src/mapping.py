@@ -1,3 +1,5 @@
+#! /usr/bin/python2
+
 from elasticsearch_dsl import DocType, Date, Nested, Boolean, \
     analyzer, InnerObjectWrapper, Completion, Keyword, Text, Object
 
