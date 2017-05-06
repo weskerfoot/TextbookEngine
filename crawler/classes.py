@@ -16,9 +16,18 @@ import logging
 import sys
 import copy
 
-fall = "2169"
+fall = "2179"
 spring_summer = "2175"
-winter = "2171"
+winter = "2181"
+
+def parse_semester(sem):
+    try:
+        splitted = sem.split("/")
+        year = splitted[0]
+        month = splitted[1]
+        return "%s%s%s" % (year[0], year[2:4], month[1])
+    except Exception:
+        return sem
 
 # threading stuff
 import Queue as q
@@ -126,9 +135,10 @@ class Section(dict):
 
     @property
     def sem(self):
-        if self._sem == fall:
+        parsed = parse_semester(self._sem)
+        if parsed == fall:
             return "Fall"
-        elif self._sem == winter:
+        elif parsed == winter:
             return "Winter"
         else:
             return "Spring/Summer"
