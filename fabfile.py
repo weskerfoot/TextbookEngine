@@ -78,6 +78,12 @@ def buildVenv():
             run("pip3 install -r requirements.txt")
 
 @task
+def buildTwoVenv():
+    local("virtualenv -p $(which python2) ./venv")
+    with prefix("source ./venv/bin/activate"):
+        local("pip2 install -r ./requirements.txt")
+
+@task
 def buildLocalVenv():
     with lcd("~/TextbookEngine/build"):
         local("virtualenv -p $(which python3) ~/TextbookEngine/build/venv")
