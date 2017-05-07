@@ -7,17 +7,17 @@
       </div>
       <div if={ books } class="card-body">
           <div class="dropdown">
-            <button onclick={showbooks} class="btn btn-link dropdown-toggle" tabindex="0">
+            <a href="#" class="btn btn-link dropdown-toggle" tabindex="0">
               Find Books <i class="icon-caret"></i>
-            </button>
-            <ul class="menu" if={ this.booksshown }>
+            </a>
+            <ul class="menu">
               <li class="menu-header">
                 <span class="menu-header-text">
                   Potential finds
                 </span>
               </li>
-              <book each={ this.R.uniq(books) } data="{ this }">
-              </book>
+              <li data-is="book" each={ this.R.uniq(books) } data="{ this }">
+              </li>
             </ul>
           </div>
       </div>
@@ -30,13 +30,6 @@
 <script>
 import { default as R } from 'ramda';
 this.R = R;
-this.booksshown = false;
-
-showbooks() {
-  this.booksshown = !this.booksshown;
-  this.update();
-}
-
 </script>
 
 </class>

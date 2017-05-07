@@ -69,6 +69,5 @@ getresources(ev) {
   })
 }
 
-
 </script>
 </book>

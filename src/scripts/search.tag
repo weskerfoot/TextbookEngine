@@ -9,7 +9,7 @@
             <div class="search column col-xs-12 col-sm-12 col-md-12 col-lg-12">
               <input onfocus={ showhelp }
                      class="form-input search"
-                     placeholder="Course Description"
+                     placeholder="Course Description (e.g. history)"
                      type="text"
                      ref="title">
               </input>
@@ -28,7 +28,7 @@
               <select class="inline-block semester form-select" aria-labelledby="dLabel" ref="sem">
                 <option value="Fall" selected>Fall</option>
                 <option value="Winter">Winter</option>
-                <option value="Spring/Summer">Spring/Summer</option>
+                <option selected value="Spring/Summer">Spring/Summer</option>
               </select>
             </div>
           </div>
