@@ -7,9 +7,13 @@
       </div>
       <div if={ books } class="card-body">
           <div class="dropdown">
-            <a href="#" class="btn btn-link dropdown-toggle" tabindex="0">
+            <button
+              class="btn btn-link dropdown-toggle tooltip tooltip-bottom"
+              tabindex="0"
+              data-tooltip={`${this.books.length} ${this.books.length > 1 ? "books" : "book"}`}
+            >
               Find Books <i class="icon-caret"></i>
-            </a>
+            </button>
             <ul class="menu">
               <li class="menu-header">
                 <span class="menu-header-text">
