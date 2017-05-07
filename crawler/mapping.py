@@ -79,5 +79,5 @@ def indexCourse(course):
     new_course.save(id=sha256(_id).hexdigest())
 
 
-#if __name__ == "__main__":
-    #Course.init()
+if __name__ == "__main__":
+    Course.init()

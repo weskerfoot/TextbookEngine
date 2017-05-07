@@ -7,7 +7,6 @@ from re import search, sub
 from functools import total_ordering
 
 from sylla import textbookInfo
-from collections import MutableMapping
 
 import datetime as dt
 import lxml.html as lxh
