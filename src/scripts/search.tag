@@ -45,6 +45,7 @@ import {filterCourses, groupsof} from './helpers.js';
 import 'whatwg-fetch';
 
 var self = this;
+self.opts = this.parent.parent.parent.parent.opts;
 
 submit(ev) {
     ev.preventDefault();

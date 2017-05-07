@@ -18,6 +18,7 @@ clicker() {
 }
 this.rows = [];
 var self = this;
+self.opts = this.parent.parent.parent.parent.opts;
 
 this.opts.resultsEv.on("loading",
   function() {
