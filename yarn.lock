@@ -33,6 +33,10 @@ ajv@^4.9.1:
     co "^4.6.0"
     json-stable-stringify "^1.0.1"
 
+animate.css@^3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/animate.css/-/animate.css-3.5.2.tgz#91e668dc069a808e5e499514867b97aae0166c36"
+
 ansi-regex@^2.0.0:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-2.1.1.tgz#c3b33ab5ee360d86e0e628f0468ae7ef27d654df"
@@ -291,7 +295,7 @@ expand-range@^1.8.1:
   dependencies:
     fill-range "^2.1.0"
 
-extend@~3.0.0:
+extend@^3.0.0, extend@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.0.tgz#5a474353b9f3353ddd8176dfd37b91c83a46f1d4"
 
@@ -927,11 +931,25 @@ riot-observable@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/riot-observable/-/riot-observable-3.0.0.tgz#8bbd2daf72a2141bb043082df4023dc504bad2eb"
 
+riot-route@^3.0.2:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/riot-route/-/riot-route-3.1.1.tgz#5d73688944d0090b1cb1cbd190eb323fefec5c9c"
+  dependencies:
+    riot-observable "^3.0.0"
+
+riot-router@^0.9.7:
+  version "0.9.7"
+  resolved "https://registry.yarnpkg.com/riot-router/-/riot-router-0.9.7.tgz#d1e9d6b597d193fbf588b9f512c30728ec514ef5"
+  dependencies:
+    extend "^3.0.0"
+    riot "^3.0.7"
+    riot-route "^3.0.2"
+
 riot-tmpl@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/riot-tmpl/-/riot-tmpl-3.0.3.tgz#35f070c552cd70d78645d33de94aa5248d57ae50"
 
-riot@^3.3.1:
+riot@^3.0.7, riot@^3.3.1:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/riot/-/riot-3.3.2.tgz#56cddd5dbcb6215aa780cfeff90e3a31b3c9f4fa"
   dependencies:
