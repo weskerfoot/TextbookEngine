@@ -1,5 +1,5 @@
 import riot from 'riot';
-import router from 'riot-route/lib/tag';
+import route from 'riot-route';
 import './book.tag';
 import './class.tag';
 import './results.tag';
@@ -15,8 +15,12 @@ function mount() {
   riot.mount("app", {
                       booksLoading : false,
                       resultsEv :  resultsEv,
-                      notLoading: true
+                      notLoading : true
                      });
+
 }
+
+
+route.start(true);
 
 mount();

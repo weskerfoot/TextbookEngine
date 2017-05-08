@@ -1,29 +1,29 @@
 <app>
-  <ul class="tab tab-block">
+  <ul class="navigate tab tab-block">
     <li class={"tab-item " + this.searchActive}>
-      <a onclick={toSearch} href="">Search</a>
+      <a onclick={toSearch} href="#">Search</a>
     </li>
     <li class={"tab-item " + this.aboutActive}>
-      <a onclick={toAbout} href="/about">About</a>
+      <a onclick={toAbout} href="#">About</a>
     </li>
   </ul>
-  <router>
-    <route path="/">
-      <div class="animated fadeIn">
-        <searchview></searchview>
-      </div>
-    </route>
-    <route path="/about">
-      <div class="animated fadeIn">
-        <aboutview></aboutview>
-      </div>
-    </route>
-  </router>
+  <searchview
+    if={this.searchActive}
+    ref="searchview"
+    opts={this.opts}
+  >
+  </searchview>
+  <aboutview
+    if={this.aboutActive}
+    ref="aboutview"
+  >
+  </aboutview>
 <script>
 import route from 'riot-route';
 this.route = route;
+this.riot = riot;
 
-this.searchActive = "";
+this.searchActive = "active";
 this.aboutActive = "";
 var self = this;
 
@@ -34,7 +34,7 @@ this.route("about",
     self.update();
   });
 
-this.route("/",
+this.route("search",
   function() {
     self.aboutActive = "";
     self.searchActive = "active";
@@ -50,7 +50,7 @@ toAbout(e) {
 
 toSearch(e) {
   e.preventDefault();
-  this.route("");
+  this.route("search");
   return;
 }
 

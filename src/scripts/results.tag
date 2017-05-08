@@ -1,37 +1,37 @@
 <results>
-      <div if={notLoading} class="courses container">
-       <row if={rows.length > 0}
-            class="course-row columns"
-            each={ rows }
-            data="{ this }"
-            classrow={ row }>
-      </row>
-      <div if={rows.length <= 0}
-           class="empty"
-      >
-        No Results, Sorry!
-      </div>
-    </div>
+  <div class="courses container">
+    <row
+      class="course-row columns"
+      each={ this.rows }
+      data={ this }
+      classrow={ this.row }>
+    </row>
+    <span if={this.noResults}>
+      No Results!
+    </span>
+  </div>
 <script>
-clicker() {
-  alert("clicked");
-}
+
 this.rows = [];
 var self = this;
-self.opts = this.parent.parent.parent.parent.opts;
+self.options = self.opts.opts;
 
-this.opts.resultsEv.on("loading",
+self.notLoading = true;
+self.noResults = false;
+
+self.options.resultsEv.on("loading",
   function() {
     self.notLoading = false;
     self.update();
   });
 
-this.opts.resultsEv.on("newResults",
+self.options.resultsEv.on("newResults",
   function(data) {
-    console.log("new search results detected");
-    console.log(data);
     self.rows = data;
     self.notLoading = true;
+    if (self.rows.length == 0) {
+      self.noResults = true;
+    }
     self.update();
 });
 </script>

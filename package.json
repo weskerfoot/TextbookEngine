@@ -16,7 +16,7 @@
   "homepage": "https://github.com/nisstyre56/TextbookEngine#readme",
   "devDependencies": {
     "ramda": "^0.23.0",
-    "riot": "^3.3.1",
+    "riot": "3.3.4",
     "rollup": "^0.41.4",
     "rollup-plugin-commonjs": "^7.0.0",
     "rollup-plugin-node-resolve": "^2.0.0",

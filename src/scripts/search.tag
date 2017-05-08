@@ -36,7 +36,7 @@
     </div>
   </form>
 
-  <div if={ opts.booksLoading } class="search-load">
+  <div if={ options.booksLoading } class="search-load">
   </div>
 
 <script>
@@ -45,13 +45,13 @@ import {filterCourses, groupsof} from './helpers.js';
 import 'whatwg-fetch';
 
 var self = this;
-self.opts = this.parent.parent.parent.parent.opts;
+self.options = self.opts.opts;
 
 submit(ev) {
     ev.preventDefault();
-    self.opts.booksLoading = true;
+    self.options.booksLoading = true;
     self.update();
-    self.opts.resultsEv.trigger("loading");
+    self.options.resultsEv.trigger("loading");
     console.log(ev);
     fetch("/search/fc?title="+self.refs.title.value+"&sem="+self.refs.sem.value).then(
       function(response) {
@@ -60,8 +60,8 @@ submit(ev) {
             function(courses) {
               var fcourses = filterCourses(courses);
               var cgroups = groupsof(3, fcourses);
-              self.opts.resultsEv.trigger("newResults", cgroups);
-              self.opts.booksLoading = false;
+              self.options.resultsEv.trigger("newResults", cgroups);
+              self.options.booksLoading = false;
               self.update();
           });
         }

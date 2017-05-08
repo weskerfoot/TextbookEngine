@@ -1,5 +1,22 @@
 $blue: #1c75bc;
 
+.navigate {
+  margin: auto;
+  width: 70%;
+}
+
+.description {
+  margin: auto;
+  width: 70%;
+  text-align: justify;
+  color: black;
+  line-height: 1.5em;
+}
+
+.source {
+  margin-top: 5px;
+}
+
 .app {
   color: $blue;
 }
