@@ -6,7 +6,7 @@ from itertools import chain, islice
 from re import search, sub
 from functools import total_ordering
 
-from sylla import textbookInfo
+from books import textbookInfo
 
 import datetime as dt
 import lxml.html as lxh
@@ -15,22 +15,15 @@ import logging
 import sys
 import copy
 
+# threading imports
+import Queue as q
+import threading as thd
+
+# Codes for semesters
+# The first three digits of the year, followed by the month the semester starts
 fall = "2179"
 spring_summer = "2175"
 winter = "2181"
-
-def parse_semester(sem):
-    try:
-        splitted = sem.split("/")
-        year = splitted[0]
-        month = splitted[1]
-        return "%s%s%s" % (year[0], year[2:4], month[1])
-    except Exception:
-        return sem
-
-# threading stuff
-import Queue as q
-import threading as thd
 
 baseurl = "https://applicants.mcmaster.ca/psp/prepprd/EMPLOYEE/PSFT_LS/c/COMMUNITY_ACCESS.CLASS_SEARCH.GBL"
 
@@ -41,6 +34,7 @@ custom_headers = {
         "Content-Type" : "application/x-www-form-urlencoded; charset=UTF-8",
         }
 
+# format strings to build GET requests, taken from an actual browser session
 courseCodes1 = "ICAJAX=1&ICNAVTYPEDROPDOWN=1&ICType=Panel&ICElementNum=0&ICStateNum={0}&ICAction=CLASS_SRCH_WRK2_SSR_PB_SUBJ_SRCH%240&ICXPos=0&ICYPos=0&ResponsetoDiffFrame=-1&TargetFrameName=None&FacetPath=None&ICFocus=&ICSaveWarningFilter=0&ICChanged=-1&ICResubmit=0&ICSID=5tq9x%2Fjt42mf62Sh5z%2BrjxT0gT15kiIyQ2cecCSmRB4%3D&ICActionPrompt=false&ICFind=&ICAddCount=&ICAPPCLSDATA=&CLASS_SRCH_WRK2_STRM$45$={1}"
 
 courseCodes2 = "ICAJAX=1&ICNAVTYPEDROPDOWN=1&ICType=Panel&ICElementNum=0&ICStateNum={0}&ICAction=SSR_CLSRCH_WRK2_SSR_ALPHANUM_{1}&ICXPos=0&ICYPos=0&ResponsetoDiffFrame=-1&TargetFrameName=None&FacetPath=None&ICFocus=&ICSaveWarningFilter=0&ICChanged=-1&ICResubmit=0&ICSID=vIUgl6ZXw045S07EPbQw4RDzv7NmKCDdJFdT4CTRQNM%3D&ICActionPrompt=false&ICFind=&ICAddCount=&ICAPPCLSDATA=&CLASS_SRCH_WRK2_STRM$45$={2}"
@@ -48,10 +42,6 @@ courseCodes2 = "ICAJAX=1&ICNAVTYPEDROPDOWN=1&ICType=Panel&ICElementNum=0&ICState
 payload2 = "ICAJAX=1&ICNAVTYPEDROPDOWN=1&ICType=Panel&ICElementNum=0&ICStateNum={0}&ICAction=%23ICSave&ICXPos=0&ICYPos=0&ResponsetoDiffFrame=-1&TargetFrameName=None&FacetPath=None&ICFocus=&ICSaveWarningFilter=0&ICChanged=-1&ICResubmit=0&ICSID=aWx3w6lJ6d2wZui6hwRVSEnzsPgCA3afYJEFBLLkxe4%3D&ICActionPrompt=false&ICFind=&ICAddCount=&ICAPPCLSDATA=&CLASS_SRCH_WRK2_STRM$45$={1}"
 
 payload = "ICAJAX=1&ICNAVTYPEDROPDOWN=1&ICType=Panel&ICElementNum=0&ICStateNum={0}&ICAction=CLASS_SRCH_WRK2_SSR_PB_CLASS_SRCH&ICXPos=0&ICYPos=0&ResponsetoDiffFrame=-1&TargetFrameName=None&FacetPath=None&ICFocus=&ICSaveWarningFilter=0&ICChanged=-1&ICResubmit=0&ICSID=aWx3w6lJ6d2wZui6hwRVSEnzsPgCA3afYJEFBLLkxe4%3D&ICActionPrompt=false&ICFind=&ICAddCount=&ICAPPCLSDATA=&SSR_CLSRCH_WRK_SUBJECT$75$$0={1}&CLASS_SRCH_WRK2_STRM$45$={2}"
-
-
-year = dt.date.today().year
-month = dt.date.today().month
 
 days = {
         "Mo" : 0,
@@ -63,16 +53,18 @@ days = {
         "Su" : 6
         }
 
-day_descs = {
-        "Mo" : "Monday Mon Mo",
-        "Tu" : "Tuesday Tues Tu Tue",
-        "We" : "Wednesday Wed We",
-        "Th" : "Thursday Th Thurs",
-        "Fr" : "Friday Fr Fri",
-        "Sa" : "Saturday Sat Sa",
-        "Su" : "Sunday Su Sun",
-        "T"  : "TBA"
-        }
+def parse_semester(sem):
+    """
+    Take a semester and try to parse it into the numeral format
+    """
+    try:
+        splitted = sem.split("/")
+        year = splitted[0]
+        month = splitted[1]
+        return "%s%s%s" % (year[0], year[2:4], month[1])
+    except IndexError:
+        return sem
+
 
 def timeparse(time):
     """
@@ -105,6 +97,10 @@ class Class(object):
         return iter((self.title, sec) for sec in self.sections)
 
     def hasCode(self):
+        """
+        Heuristic for checking if a course has a code associated with it
+        Checks if it has more than two words and if they start with uppercase letters
+        """
         splitted = self.title.strip().split(" ")
         return ((len(splitted) >= 2) and
                 (splitted[0].upper() == splitted[0]) and
@@ -118,22 +114,34 @@ class Class(object):
 
     @property
     def books(self):
+        """
+        Get textbooks for the course
+        """
         if self.dept and self.code:
             return textbookInfo(self.dept, self.code, withPrices=True)
         return False
 
 @total_ordering
 class Section(dict):
+    """
+    This represents a section of a course
+    """
     def __init__(self, time, loc, prof, sem):
-        self.time = time.encode("UTF-8")
-        self.loc = loc.encode("UTF-8")
-        self.prof = prof.encode("UTF-8")
-        self._sem = sem.encode("UTF-8")
+        self.time = time
+
+        # Location of the course (building)
+        self.loc = loc
+
+        self.prof = prof
+        self._sem = sem
         self._date = False
         self._day = False
 
     @property
     def sem(self):
+        """
+        Return the semester the course runs
+        """
         parsed = parse_semester(self._sem)
         if parsed == fall:
             return "Fall"
@@ -144,28 +152,43 @@ class Section(dict):
 
     @property
     def date(self):
+        """
+        Return the day(s) of the week the section runs and the start and end times
+        """
         if self.time != "TBA":
             day, start, _, end = self.time.split()
 
-            if self._day:
-                assert len(self._day) == 2
-                day = self._day
-            else:
-                day = [day[n:n+2] for n in range(0, len(day)-1, 2)]
+            # Assuming that each day is two characters, create a list of them
+            day = [day[n:n+2] for n in range(0, len(day)-1, 2)]
 
             self._date = (day, timeparse(start), timeparse(end))
 
             return self._date
-
         return self.time
 
     @property
     def day(self):
-        return self.date[0]
+        """
+        Return just the day(s) the section runs
+        """
+
+        # This is set when the section is duplicated (then it would have a single day)
+        if self._day:
+            return self._day
+
+        # Otherwise return the list of days from the date property
+        if self.date != "TBA":
+            return self.date[0]
+        return "TBA"
 
     @property
     def start(self):
-        return self.date[1][0] + self.date[1][1]
+        """
+        Return the starting time of this section
+        """
+        if self.date != "TBA":
+            return self.date[1][0] + self.date[1][1]
+        return "TBA"
 
     def __repr__(self):
         return ("""
@@ -294,13 +317,13 @@ class MosReq(object):
                              headers=custom_headers).content)
     @property
     def codes(self):
+        """
+        Gets a list of all course codes available
+        """
         if not self.codes_:
-            self.codes_ = list(chain.from_iterable(
-                                list(
-                                    map(
-                                        (lambda l:
-                                            self.getCodes(chr(l))),
-                                        range(65, 91)))))
+            self.codes_ = list(
+                            chain.from_iterable(
+                                self.getCodes(chr(l)) for l in range(65, 91)))
         return self.codes_
 
 def request(codes, lists, semester):
@@ -324,27 +347,46 @@ class CourseInfo(object):
         return self._codes
 
     def classes(self):
-        qcodes = q.Queue()
+        """
+        Returns a generator of all courses and textbooks
+        """
+
+        # Queue of letters to process
+        course_codes = q.Queue()
+
+        # Initialize the queue with all codes
         for code in self.codes:
-            qcodes.put(code)
+            course_codes.put(code)
+
         lists = q.Queue()
         threads = []
         thread = None
+
+        # Spawn threads that pull from the queue of course codes
         for i in range(self.threadcount):
-            thread = thd.Thread(group=None, target=request, args=(qcodes, lists, self.semester))
+            thread = thd.Thread(group=None, target=request, args=(course_codes, lists, self.semester))
             threads.append(thread)
             thread.start()
-        qcodes.join()
+
+        # Block until all queue tasks are done
+        course_codes.join()
+
+        # Block until all threads have exited
         for t in threads:
             t.join()
 
         sections = []
+
+        # Empty the queue of sections and put it into the list
         while not lists.empty():
             sections.append(lists.get())
 
+        # This creates a section for each day, so that each section has only one day
         for cl in chain.from_iterable(sections):
             new_sections = []
             for sec in cl[1]:
+                # sec.day is a list of days
+                # if there is more than one day, we want to split this up into multiple sections
                 if len(sec.day) > 1:
                     for day in sec.day:
                         new_sections.append(copy.deepcopy(sec))
@@ -352,17 +394,27 @@ class CourseInfo(object):
                 else:
                     sec._day = sec.day[0]
                     new_sections.append(sec)
+
+            # cl[0][0] is the subject code/department scraped from the page
+            # cl[0][1] is the subject name scraped from the page
+            # regex substitution is to get rid of erroneous characters (due to an encoding problem with the page)
+
             yield Class(cl[0][0], sub("\xa0+", "", cl[0][1]), sorted(new_sections))
 
-def getCourses(semester, threadcount=5):
+def getCourses(semester, threadcount=10):
+    """
+    Gets all the courses for a given semester
+    """
     return CourseInfo(threadcount, semester).classes()
 
 def allCourses():
-    return chain.from_iterable(
-     (getCourses(sem, threadcount=5)
-        for sem in [spring_summer, fall, winter]))
+    """
+    Gets all the courses for all three semesters
+    """
+    courses = map(getCourses, [spring_summer, fall, winter])
+    return chain.from_iterable(courses)
 
 if __name__ == "__main__":
     for course in allCourses():
-        indexCourse(course)
-        #sys.stdout.write("%s, %s, %s, %s\n" % (course.title, course.code, course.dept, list(chain.from_iterable(course.books) if course.books else [])))
+        print course
+        #indexCourse(course)
