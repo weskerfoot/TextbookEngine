@@ -65,7 +65,6 @@ def parse_semester(sem):
     except IndexError:
         return sem
 
-
 def timeparse(time):
     """
     Parse the time into numbers
@@ -96,20 +95,18 @@ class Class(object):
     def __iter__(self):
         return iter((self.title, sec) for sec in self.sections)
 
-    def hasCode(self):
+    @property
+    def code(self):
         """
         Heuristic for checking if a course has a code associated with it
         Checks if it has more than two words and if they start with uppercase letters
         """
         splitted = self.title.strip().split(" ")
-        return ((len(splitted) >= 2) and
-                (splitted[0].upper() == splitted[0]) and
-                (splitted[1].upper() == splitted[1]))
+        if ((len(splitted) >= 2) and
+            (splitted[0].upper() == splitted[0]) and
+            (splitted[1].upper() == splitted[1])):
+            return splitted
 
-    @property
-    def code(self):
-        if self.hasCode():
-            return self.title.strip().split(" ")[1].strip()
         return False
 
     @property
@@ -194,6 +191,7 @@ class Section(dict):
         return ("""
                 Time = %s, Location = %s, Instructor = %s, Semester Running = %s
                  """ % (self.date, self.loc, self.prof, self.sem))
+
     def __gt__(self, x):
         if isinstance(self.day, list):
             raise NotImplementedError
@@ -230,12 +228,18 @@ def parseSection(section):
     return classinfo
 
 def getSectionInfo(table):
+    """
+    Extract section information from the parsed course table
+    """
     trs = table.xpath(".//tr")
     for tr in trs:
         if tr.xpath("@id") and search(r"SSR_CLSRCH", tr.xpath("@id")[0]):
             yield parseSection(tr)
 
 def parseColumns(subject, html):
+    """
+    Extract class columns
+    """
     parsed = lxh.fromstring(html)
 
     classInfo = (list(getSectionInfo(table)) for table in
@@ -250,6 +254,9 @@ def parseColumns(subject, html):
     return list(zip(classNames, classInfo))
 
 def getCodes(html):
+    """
+    Get department course codes
+    """
     parsed = lxh.fromstring(html)
 
     return (code.text_content().encode("UTF-8") for code in
