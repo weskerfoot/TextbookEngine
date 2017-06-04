@@ -32,6 +32,9 @@ self.options.resultsEv.on("newResults",
     if (self.rows.length == 0) {
       self.noResults = true;
     }
+    else {
+      self.noResults = false;
+    }
     self.update();
 });
 </script>

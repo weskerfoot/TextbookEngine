@@ -25,4 +25,3 @@ this.classrow = opts.classrow
 </script>
 
 </row>
-
