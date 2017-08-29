@@ -36,7 +36,7 @@
     </div>
   </form>
 
-  <div if={ options.booksLoading } class="search-load">
+  <div show={ options.booksLoading } class="search-load">
   </div>
 
 <script>

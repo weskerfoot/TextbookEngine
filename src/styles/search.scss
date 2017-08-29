@@ -6,11 +6,14 @@ $blue: #1c75bc;
 }
 
 .description {
-  margin: auto;
+  margin-top: 15px !important;
+  margin-left: auto;
+  margin-right: auto;
   width: 70%;
-  text-align: justify;
-  color: black;
-  line-height: 1.5em;
+	font-family: 'Open Sans',sans-serif;
+	font-size: 1.4em;
+	line-height: 1.6em;
+	color: #3A4145;
 }
 
 .source {

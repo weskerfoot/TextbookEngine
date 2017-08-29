@@ -8,13 +8,13 @@
     </li>
   </ul>
   <searchview
-    if={this.searchActive}
+    show={this.searchActive}
     ref="searchview"
     opts={this.opts}
   >
   </searchview>
   <aboutview
-    if={this.aboutActive}
+    show={this.aboutActive}
     ref="aboutview"
   >
   </aboutview>
