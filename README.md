@@ -5,6 +5,8 @@ books. It will try to find alternatives through various means. At the moment it
 only searches the Internet Archive, and Open Library, however the plan is to
 refine it to find better matches.
 
+[Demo Site](https://mgoal.ca)
+
 The code is available under the GNU Affero General Public License.
 This means you must make any changes you make available if you run it on your
 own server and allow people to use it, in addition to the regular requirements of the GPL.
